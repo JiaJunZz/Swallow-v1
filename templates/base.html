@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="ZJJ">
+
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    {#  <title>Dashboard Template for Bootstrap</title>#}
+    <title>{% block title %}Swallow{% endblock %}</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- import CSS -->
+    <link href="{% static "css/index.css" %}" rel="stylesheet">
+    <!-- metisMenu css -->
+    <link href="{% static "css/metisMenu.min.css" %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+
+</head>
+
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Swallow</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block col-lg-2 bg-light sidebar">
+            <div class="sidebar-sticky">
+                <div id="nav-left">
+                    <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+                             background-color="#f8f9fa"
+                             text-color="#262626"
+                             >
+
+                        <el-menu-item index="1">
+                            <i class="el-icon-star-on"></i>
+                            <span slot="title">仪表盘</span>
+                        </el-menu-item>
+                        <el-submenu index="2">
+                            <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>资产管理</span>
+                            </template>
+                            <el-menu-item index="2-1"><a href="{% url 'asset_server' %}">服务器管理</a></el-menu-item>
+                           <el-menu-item index="2-2"><a href="{% url 'asset_server' %}">网络设备管理</a></el-menu-item>
+                            <el-menu-item index="2-3"><a href="#">机房管理</a></el-menu-item>
+                        </el-submenu>
+
+                        <el-submenu index="3">
+                            <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>功能3</span>
+                            </template>
+                            <el-menu-item-group>
+                                <el-menu-item index="3-1">服务器管理</el-menu-item>
+                                <el-menu-item index="3-2">网络设备管理</el-menu-item>
+                                <el-menu-item index="3-3">机房管理</el-menu-item>
+                            </el-menu-item-group>
+                        </el-submenu>
+
+                    </el-menu>
+                </div>
+            </div>
+        </nav>
+
+            {% block content %}
+
+            {% endblock %}
+
+    </div>
+{#    <div>#}
+{#      <footer class="my-5 pt-5 text-muted text-center text-small">#}
+{#        <p class="mb-1">&copy; 2017-2018 Company Name</p>#}
+{#        <ul class="list-inline">#}
+{#          <li class="list-inline-item"><a href="#">Privacy</a></li>#}
+{#          <li class="list-inline-item"><a href="#">Terms</a></li>#}
+{#          <li class="list-inline-item"><a href="#">Support</a></li>#}
+{#        </ul>#}
+{#      </footer>#}
+{#    </div>#}
+</div>
+</body>
+
+
+<!-- import Vue before Element -->
+<script src="{% static "js/vue.js" %}"></script>
+<!-- import JavaScript -->
+<script src="{% static "js/index.js" %}"></script>
+
+<!-- jquery js    -->
+<script src="{% static "js/jquery.min.js" %}"></script>
+
+<!-- metisMenu js -->
+<script src="{% static "js/metisMenu.min.js" %}"></script>
+
+
+<!-- Icons -->
+<script src="{% static "js/feather.min.js" %}"></script>
+<script>
+    feather.replace()
+</script>
+
+<script>
+    var Main = {
+        methods: {
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
+            }
+        }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#nav-left')
+</script>
+
+{% block customer_js %}
+
+{% endblock %}
+
+</html>

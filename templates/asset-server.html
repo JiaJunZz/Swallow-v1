@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+    服务器管理-Swallow
+{% endblock %}
+{% block content %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <p class="text-info">总共有{{ server_num }}台服务器,{{ virtual_num }}台虚拟机</p>
+        <button type="button" class="btn btn-primary btn-sm"><a href="{% url 'server_add' %}">添加主机</a></button>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>资产编号</th>
+                    <th>管理IP</th>
+                    <th>资产类型</th>
+                    <th>IDC机房</th>
+                    <th>系统类型</th>
+                    <th>配置</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for host in host %}
+                    <tr>
+                        <td>{{ host.name }}</td>
+                        <td>{{ host.ip_managemant }}</td>
+                        <td>{{ host.get_asset_type_display }}</td>
+                        <td>{{ host.idc }}</td>
+                        <td>{{ host.os_type }} {{ host.os_release }}</td>
+                        <td>{{ host.cpu_physics_count }}*{{ host.cpu_core_count }} | {{ host.mem_capacity }}G
+                            | {{ host.disk_capacity }}GB
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-info">详情</button>
+                                <button type="button" class="btn btn-dark">修改</button>
+                                <button type="button" class="btn btn-warning">更新</button>
+                                <button onclick="delconfirm()" id="delserver" type="button"
+                                        class="btn btn-danger delserver"
+                                        data-id="{{ host.id }}">删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}
+
+{% block customer_js %}
+    <script type="text/javascript">
+        $('.delserver').on('click', function () {
+
+            var r = confirm('是否删除主机?'),
+                hostid = $(this).attr('data-id');
+            if (r) {
+
+                $.ajax({
+                    type: "GET",
+                    url: "/server_del/",
+                    data: {
+                        'hostid': hostid
+                    }});
+               location.reload();
+                alert('已经删除!')
+            }
+        })
+
+
+    </script>
+
+{% endblock %}

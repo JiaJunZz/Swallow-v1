@@ -1,0 +1,142 @@
+{% extends "base.html" %} {% block title %} 增加服务器-Swallow {% endblock %} {% block content %}
+
+<main role="main" class="col-md-6 ml-sm-auto col-lg-4 pt-3 px-4">
+
+  <h5 class="mb-3 text-success">增加主机</h5>
+
+  <form class="needs-validation" novalidate method="POST" action="{% url 'server_add' %}">
+
+{#    <div class="mb-3">#}
+{#      <label for="ip_managemant">管理IP</label>#}
+{#      <input type="text" class="form-control" name="ip_managemant" id="ip_managemant" placeholder="请输入管理IP" value="" required>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#      <div class="col-md-6 mb-3">#}
+{#        <label for="ip_other1">其他IP地址1</label>#}
+{#        <input type="text" class="form-control" name="ip_other1" id="ip_other1" placeholder="请输入其他IP" value="" required>#}
+{#      </div>#}
+{#      <div class="col-md-6 mb-3">#}
+{#        <label for="ip_other">其他IP地址2</label>#}
+{#        <input type="text" class="form-control" name="ip_other2" id="ip_other2"  placeholder="请输入其他IP" value="" required>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#      <div class="col-md-6 mb-3">#}
+{#        <label for="os_type">系统类型</label>#}
+{#        <select class="custom-select d-block w-100" id="os_type" name="os_type" required>#}
+{#          <option value="">Choose...</option>#}
+{#            <option>Windows</option>#}
+{#            <option>Centos</option>#}
+{#            <option>Redhat</option>#}
+{#            <option>Ubuntu</option>#}
+{#        </select>#}
+{#      </div>#}
+{#      <div class="col-md-6 mb-3">#}
+{#        <label for="os_release">操作系统版本</label>#}
+{#        <input type="text" class="form-control" name="os_release" id="os_release" placeholder="操作系统版本" value="" required>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#      <div class="col-md-4 mb-3">#}
+{#        <label for="cpu_physics_count">物理CPU个数</label>#}
+{#        <input type="text" class="form-control" id="cpu_physics_count" name="cpu_physics_count" placeholder="" value="" required>#}
+{#      </div>#}
+{#      <div class="col-md-4 mb-3">#}
+{#        <label for="cpu_core_count">CPU核数</label>#}
+{#        <input type="text" class="form-control" id="cpu_core_count" name="cpu_core_count" placeholder="" value="" required>#}
+{#      </div>#}
+{#      <div class="col-md-4 mb-3">#}
+{#        <label for="cpu_logic_count">逻辑CPU个数</label>#}
+{#        <input type="text" class="form-control" id="cpu_logic_count" name="cpu_logic_count" placeholder="" value="" required>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#      <label for="mem_capacity">内存大小(GB)</label>#}
+{#      <input type="text" class="form-control" id="mem_capacity" name="mem_capacity" placeholder="" value="" required>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#      <div class="col-md-6 mb-3">#}
+{#        <label for="disk_capacity">磁盘容量(GB)</label>#}
+{#        <input type="text" class="form-control" id="disk_capacity" name="disk_capacity" placeholder="" value="" required>#}
+{#      </div>#}
+{#      <div class="col-md-6 mb-3">#}
+{#        <label for="raid_type">raid类型</label>#}
+{#        <select class="custom-select d-block w-100" id="raid_type" name="raid_type" required>#}
+{#          <option value="">Choose...</option>#}
+{#          <option>无raid</option>#}
+{#          <option>Raid0</option>#}
+{#          <option>Raid1</option>#}
+{#          <option>Raid5</option>#}
+{#        </select>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#      <label for="mac_address">MAC地址</label>#}
+{#      <input type="text" class="form-control" id="mac_address" name="mac_address" placeholder="" value="" required>#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#      <label for="name">资产编号</label>#}
+{#      <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required>#}
+{#    </div>#}
+{#      <div class="mb-3">#}
+{#        <label for="sn">序列号</label>#}
+{#      <input type="text" class="form-control" id="sn" name="sn" placeholder="" value="" required>#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#      <label for="asset_type">资产类型</label>#}
+{#      <input type="text" class="form-control" id="asset_type" name="asset_type" placeholder="" value="" required>#}
+{#    </div>#}
+{##}
+{#    <div class="row">#}
+{#      <div class="col-md-6 mb-3">#}
+{#        <label for="manufactory">制造商</label>#}
+{#        <input type="text" class="form-control" id="manufactory" name="manufactory" placeholder="" value="" required>#}
+{#      </div>#}
+{#        <div class="col-md-6 mb-3">#}
+{#      <label for="model">设备型号</label>#}
+{#      <input type="text" class="form-control" id="model" name="model" placeholder="" value="" required>#}
+{#    </div>#}
+{#        </div>#}
+{#    <div class="mb-3">#}
+{#      <label for="supplier">供应商</label>#}
+{#      <input type="text" class="form-control" id="supplier" name="supplier" placeholder="" value="" required>#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#      <label for="trade_date">购买日期</label>#}
+{#      <input type="text" class="form-control" id="trade_date" name="trade_date" placeholder="" value="" required>#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#      <label for="expire_date">过保日期</label>#}
+{#      <input type="text" class="form-control" id="expire_date" name="expire_date" placeholder="" value="" required>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#      <div class="col-md-4 mb-3">#}
+{#        <label for="idc">IDC机房</label>#}
+{#        <select class="custom-select d-block w-100" id="idc" name="idc" required>#}
+{#          <option value="">Choose...</option>#}
+{#          <option>sh</option>#}
+{#        </select>#}
+{#      </div>#}
+{#      <div class="col-md-4 mb-3">#}
+{#        <label for="cabinet">机柜</label>#}
+{#        <input type="text" class="form-control" id="cabinet" name="cabinet" placeholder="" value="" required>#}
+{#      </div>#}
+{#      <div class="col-md-4 mb-3">#}
+{#        <label for="cabinet_uid">U位</label>#}
+{#        <input type="text" class="form-control" id="cabinet_uid" name="cabinet_uid" placeholder="" value="" required>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#      <label for="memo">备注</label>#}
+{#      <input type="text" class="form-control" id="memo" name="memo" placeholder="" value="" required>#}
+{#    </div>#}
+    {{ form.as_p }}
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit">确认提交</button>
+      {% csrf_token %}
+
+  </form>
+
+</main>
+<div class="col-md-4 col-lg-6"></div>
+{% endblock %}
