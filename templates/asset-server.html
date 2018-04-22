@@ -36,7 +36,7 @@
                                 <button type="button" class="btn btn-info">详情</button>
                                 <button type="button" class="btn btn-dark">修改</button>
                                 <button type="button" class="btn btn-warning">更新</button>
-                                <button onclick="delconfirm()" id="delserver" type="button"
+                                <button id="delserver" type="button"
                                         class="btn btn-danger delserver"
                                         data-id="{{ host.id }}">删除
                                 </button>
@@ -53,7 +53,7 @@
 
 {% block customer_js %}
     <script type="text/javascript">
-        $('.delserver').on('click', function () {
+        $('.delserver').click(function () {
 
             var r = confirm('是否删除主机?'),
                 hostid = $(this).attr('data-id');
@@ -64,9 +64,22 @@
                     url: "/server_del/",
                     data: {
                         'hostid': hostid
-                    }});
-               location.reload();
-                alert('已经删除!')
+                    },
+                    dataType: 'JSON',
+                    success: function (arg) {
+                        console.log(arg);
+                        console.log(arg.code);
+                        console.log(typeof arg.code);
+                        if (arg.code == 200) {
+                            window.location.reload();
+                            alert(arg.message)
+                        }
+                        else {
+                            alert(arg.message)
+                        }
+                    }
+
+                    });
             }
         })
 

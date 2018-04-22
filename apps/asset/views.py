@@ -1,10 +1,13 @@
 from django.shortcuts import render
 
 # Create your views here.
+import json
 from django.shortcuts import render
 from .models import Host
 from .forms import ServerAddForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
+
+
 # Create your views here.
 def asset_server(request):
 
@@ -61,10 +64,13 @@ def server_add(request):
 def server_del(request):
     '''
     主机删除
-    :param request: 
-    :return: 
     '''
+    response = {'code':200,'message':'删除成功！'}
     hostid = request.GET.get("hostid")
-    # print(hostid)
-    Host.objects.filter(id=hostid).delete()
-    return HttpResponseRedirect('/asset_server/')
+    try:
+        Host.objects.filter(id=hostid).delete()
+
+    except:
+        response['code'] = 100
+        response['message'] = '删除失败！'
+    return HttpResponse(json.dumps(response))
