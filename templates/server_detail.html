@@ -1,0 +1,110 @@
+{% extends "base.html" %} {% block title %} 服务器详情-Swallow {% endblock %} {% block content %}
+
+<main role="main" class="col-md-6 ml-sm-auto col-lg-4 pt-3 px-4">
+
+  <h5 class="mb-3 text-success">主机详情</h5>
+
+    <table class="table">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td>管理IP:</td>
+                <td>{{ host.ip_managemant }}</td>
+            </tr>
+            <tr>
+                <td>其他IP地址1:</td>
+                <td>{{ host.ip_other1 }}</td>
+            </tr>
+            <tr>
+                <td>其他IP地址2:</td>
+                <td>{{ host.ip_other2 }}</td>
+            </tr>
+            <tr>
+                <td>系统类型:</td>
+                <td>{{ host.os_type }}</td>
+            </tr>
+            <tr>
+                <td>操作系统版本:</td>
+                <td>{{ host.os_release }}</td>
+            </tr>
+            <tr>
+                <td>物理CPU个数:</td>
+                <td>{{ host.cpu_physics_count }}</td>
+            </tr>
+            <tr>
+                <td>CPU核数:</td>
+                <td>{{ host.cpu_core_count }}</td>
+            </tr>
+            <tr>
+                <td>逻辑CPU个数:</td>
+                <td>{{ host.cpu_logic_count }}</td>
+            </tr>
+            <tr>
+                <td>内存大小(GB):</td>
+                <td>{{ host.mem_capacity }}</td>
+            </tr>
+            <tr>
+                <td>磁盘容量(GB):</td>
+                <td>{{ host.disk_capacity }}</td>
+            </tr>
+            <tr>
+                <td>Raid类型:</td>
+                <td>{{ host.raid_type }}</td>
+            </tr>
+            <tr>
+                <td>MAC地址:</td>
+                <td>{{ host.mac_address }}</td>
+            </tr>
+            <tr>
+                <td>资产编号:</td>
+                <td>{{ host.name }}</td>
+            </tr>
+            <tr>
+                <td>序列号SN:</td>
+                <td>{{ host.sn }}</td>
+            </tr>
+            <tr>
+                <td>资产类型:</td>
+                <td>{{ host.get_asset_type_display }}</td>
+            </tr>
+            <tr>
+                <td>设备型号:</td>
+                <td>{{ host.model }}</td>
+            </tr>
+            <tr>
+                <td>制造商:</td>
+                <td>{{ host.manufactory }}</td>
+            </tr>
+            <tr>
+                <td>供应商:</td>
+                <td>{{ host.supplier }}</td>
+            </tr>
+            <tr>
+                <td>购买日期:</td>
+                <td>{{ host.trade_date }}</td>
+            </tr>
+            <tr>
+                <td>过保日期:</td>
+                <td>{{ host.expire_date }}</td>
+            </tr>
+            <tr>
+                <td>IDC机房:</td>
+                <td>{{ host.idc }}</td>
+            </tr>
+            <tr>
+                <td>机柜:</td>
+                <td>{{ host.cabinet }}</td>
+            </tr>
+            <tr>
+                <td>U位:</td>
+                <td>{{ host.cabinet_uid }}</td>
+            </tr>
+            <tr>
+                <td>备注:</td>
+                <td>{{ host.memo }}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+<div class="col-md-4 col-lg-6"></div>
+{% endblock %}

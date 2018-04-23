@@ -8,13 +8,14 @@ from .forms import ServerAddForm
 from django.http import HttpResponseRedirect,HttpResponse
 
 
+
 # Create your views here.
 def asset_server(request):
 
     host = Host.objects.all()
     server_num = Host.objects.filter(asset_type="server").count()
     virtual_num = Host.objects.filter(asset_type="virtual").count()
-    return render(request,'asset-server.html',{
+    return render(request,'asset_server.html',{
         'host':host,
         'server_num':server_num,
         'virtual_num':virtual_num})
@@ -22,8 +23,6 @@ def asset_server(request):
 def server_add(request):
     '''
     主机添加
-    :param request: 
-    :return: 
     '''
     if request.method == 'POST':
         # ip_managemant = form.cleaned_data['ipmanagemant']
@@ -58,7 +57,7 @@ def server_add(request):
             return HttpResponseRedirect('/asset_server/')
     else:
         form = ServerAddForm()
-    return render(request,'server-add.html',{'form': form})
+    return render(request,'server_add.html',{'form': form})
 
 
 def server_del(request):
@@ -74,3 +73,29 @@ def server_del(request):
         response['code'] = 100
         response['message'] = '删除失败！'
     return HttpResponse(json.dumps(response))
+
+def server_edit(request, nid):
+    '''
+    主机编辑
+    '''
+    if request.method == 'GET':
+        server_obj = Host.objects.filter(id=nid).first()
+        form = ServerAddForm(instance=server_obj)
+        return render(request,'server_edit.html',{'form': form, 'nid': nid})
+    elif request.method == 'POST':
+        server_obj = Host.objects.filter(id=nid).first()
+        form = ServerAddForm(request.POST,instance=server_obj)
+        if form.is_valid():
+            form.save()
+        else:
+            print('error')
+        return HttpResponseRedirect('/asset_server/')
+
+def server_detail(request,nid):
+    '''
+    主机详情
+    '''
+    if request.method == 'GET':
+        host = Host.objects.get(id=nid)
+        print(host)
+        return render(request,'server_detail.html',{'host':host,})
