@@ -87,8 +87,6 @@ def server_edit(request, nid):
         form = ServerAddForm(request.POST,instance=server_obj)
         if form.is_valid():
             form.save()
-        else:
-            print('error')
         return HttpResponseRedirect('/asset_server/')
 
 def server_detail(request,nid):
@@ -97,5 +95,4 @@ def server_detail(request,nid):
     '''
     if request.method == 'GET':
         host = Host.objects.get(id=nid)
-        print(host)
         return render(request,'server_detail.html',{'host':host,})

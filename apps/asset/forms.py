@@ -19,9 +19,9 @@ class ServerAddForm(ModelForm):
         model = Host
         exclude = ['create_date','update_date']
         widgets = {
-            'ip_managemant': frwidgets.Input(attrs={'class':'form-control'}),
-            'ip_other1': frwidgets.Input(attrs={'class': 'form-control'}),
-            'ip_other2': frwidgets.Input(attrs={'class': 'form-control'}),
+            'ip_managemant': frwidgets.Input(attrs={'class':'form-control','placeholder':'请输入IP地址...'}),
+            'ip_other1': frwidgets.Input(attrs={'class': 'form-control','placeholder':'请输入IP地址...'}),
+            'ip_other2': frwidgets.Input(attrs={'class': 'form-control','placeholder':'请输入IP地址...'}),
             'os_type': frwidgets.Select(attrs={'class': 'custom-select d-block w-100'}),
             'os_release': frwidgets.Input(attrs={'class': 'form-control'}),
             'cpu_physics_count': frwidgets.Input(attrs={'class': 'form-control'}),
@@ -37,8 +37,8 @@ class ServerAddForm(ModelForm):
             'model': frwidgets.Input(attrs={'class': 'form-control'}),
             'manufactory': frwidgets.Select(attrs={'class': 'form-control'}),
             'supplier': frwidgets.Select(attrs={'class': 'form-control'}),
-            'trade_date': frwidgets.DateInput(attrs={'class': 'form-control'}),
-            'expire_date': frwidgets.DateInput(attrs={'class': 'form-control'}),
+            'trade_date': frwidgets.DateInput(attrs={'class': 'form-control','placeholder':'/YYYY/MM/DD'}),
+            'expire_date': frwidgets.DateInput(attrs={'class': 'form-control','placeholder':'/YYYY/MM/DD'}),
             'idc': frwidgets.Select(attrs={'class': 'form-control'}),
             'cabinet': frwidgets.Input(attrs={'class': 'form-control'}),
             'cabinet_uid': frwidgets.Input(attrs={'class': 'form-control'}),
