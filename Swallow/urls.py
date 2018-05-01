@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'^server_del/$',asset_views.server_del,name="server_del"),
     url(r'^server_edit/(\d+)/$',asset_views.server_edit,name="server_edit"),
     url(r'^server_detail/(\d+)/$',asset_views.server_detail,name="server_detail"),
+    url(r'supplier_add/$',asset_views.supplier_add,name="supplier_add"),
+    url(r'manufactory_add/$',asset_views.manufactory_add,name="manufactory_add"),
 ]

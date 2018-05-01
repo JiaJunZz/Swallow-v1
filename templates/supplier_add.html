@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="ZJJ">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+  <h5 class="mb-3 text-success">增加供应商</h5>
+
+  <form class="needs-validation" novalidate method="POST" action="{% url 'supplier_add' %}">
+
+    {{ supplier_form.as_p }}
+
+    <button class="btn btn-primary" type="submit">保存</button>
+      {% csrf_token %}
+
+  </form>
+
+
+</body>
+</html>

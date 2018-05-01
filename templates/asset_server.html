@@ -8,6 +8,7 @@
         <p class="text-info">总共有{{ server_num }}台服务器,{{ virtual_num }}台虚拟机</p>
         <button type="button" class="btn btn-success btn-sm"><a href="{% url 'server_add' %}">添加主机</a></button>
         <div class="table-responsive">
+
             <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -33,14 +34,45 @@
                         </td>
                         <td>
                             <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-info"><a href="/server_detail/{{ host.id }}">详情</a></button>
-                                <button type="button" class="btn btn-primary"><a href="/server_edit/{{ host.id }}/">修改</a></button>
-                                <button type="button" class="btn btn-warning">更新</button>
-                                <button id="delserver" type="button"
-                                        class="btn btn-danger delserver"
-                                        data-id="{{ host.id }}">删除
+                                <button type="button" class="btn btn-info"><a href="/server_detail/{{ host.id }}">详情</a>
                                 </button>
+                                <button type="button" class="btn btn-primary"><a
+                                        href="/server_edit/{{ host.id }}/">修改</a></button>
+                                <button type="button" class="btn btn-warning">更新</button>
+                                <button type="button"
+                                        class="btn btn-danger "
+                                         data-toggle="modal" data-target="#delServer">删除
+                                </button>
+                                <!-- 删除Modal -->
+                                <div class="modal fade" id="delServer" tabindex="-1" role="dialog"
+                                     aria-labelledby="delServerLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="delServerLabel">删除服务器</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                删除此服务器之后，后台将不再保存此服务器信息！
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    取消
+                                                </button>
+                                                <button type="button" data-id="{{ host.id }}" class="btn btn-primary confdelserver">确定
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
+
+
                         </td>
                     </tr>
                 {% endfor %}
@@ -48,17 +80,23 @@
                 </tbody>
             </table>
         </div>
+
+
     </main>
+
+
 {% endblock %}
 
+
 {% block customer_js %}
+
+
     <script type="text/javascript">
-        $('.delserver').click(function () {
+        $('.confdelserver').click(function () {
 
-            var r = confirm('是否删除主机?'),
+
                 hostid = $(this).attr('data-id');
-            if (r) {
-
+                console.log(hostid);
                 $.ajax({
                     type: "GET",
                     url: "/server_del/",
@@ -67,23 +105,22 @@
                     },
                     dataType: 'JSON',
                     success: function (arg) {
-                        console.log(arg);
-                        console.log(arg.code);
-                        console.log(typeof arg.code);
                         if (arg.code == 200) {
                             window.location.reload();
-                            alert(arg.message)
+                            alert(arg.message);
+
                         }
                         else {
                             alert(arg.message)
                         }
                     }
 
-                    });
-            }
+                });
+
         })
 
 
     </script>
 
 {% endblock %}
+
