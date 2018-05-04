@@ -1,29 +1,21 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="ZJJ">
-    <title>Document</title>
-</head>
-<body>
+{% extends "simple_base.html" %}
+{% block title %} 增加制造商 {% endblock %}
+{% block body %}
+<h5 class="col-md-2 col-md-offset-1 mb-3 text-success">增加制造商</h5>
 
+<form class="needs-validation" novalidate method="POST" action="{% url 'manufactory_add' %}">
 
-
-  <h5 class="mb-3 text-success">增加制造商</h5>
-
-  <form class="needs-validation" novalidate method="POST" action="{% url 'manufactory_add' %}">
-
+    <div class="col-md-2 col-md-offset-1" style="width:50%">
     {{ manufactory_form.as_p }}
 
-    <button class="btn btn-primary" type="submit">保存</button>
-      {% csrf_token %}
+        <button class="btn btn-primary" type="submit">保存</button>
+    </div>
 
-  </form>
+    {% csrf_token %}
+</form>
 
 
-</body>
-</html>
+{% endblock %}
+
+

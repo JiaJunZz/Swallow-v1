@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="ZJJ">
+    <link rel="icon" href="{% static "image/favicon.ico" %}">
+    <title>{% block title %} {% endblock %}</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <!-- awesome CSS -->
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+    <link href="{% static "css/swallow.css" %}" rel="stylesheet">
+    {% block custome-css %}
+
+    {% endblock %}
+
+</head>
+<body>
+{% block body %}
+
+{% endblock %}
+</body>
+
+<!-- import JavaScript -->
+<script src="{% static "js/index.js" %}"></script>
+
+<!-- jquery js    -->
+<script src="{% static "js/jquery.min.js" %}"></script>
+
+<script src="{% static "js/popper.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<!-- Icons -->
+
+{% block customer_js %}
+
+{% endblock %}
+</html>

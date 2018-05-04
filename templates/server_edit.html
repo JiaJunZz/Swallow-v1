@@ -46,19 +46,22 @@
 
       <p style="margin: 0">制造商: </p>
           <div class="row">
-              <p class="col-md-11">{{ form.manufactory }}</p>
+              <p class="col-md-10">{{ form.manufactory }}</p>
+              <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="editmanu()">
+                <span style="vertical-align: -50%;" class="fa fa-pencil" aria-hidden="true" ></span>
+              </a>
                 <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="openmanu()">
                   <span style="vertical-align: -50%; " class="fa fa-plus fa-lg " aria-hidden="true" ></span>
                 </a>
           </div>
 
-
       <p style="margin: 0">供应商: </p>
       <div class="row">
-          <p class="col-md-11">{{ form.supplier }}</p>
-
+          <p class="col-md-10">{{ form.supplier }}</p>
+          <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="editsupp()">
+              <span style="vertical-align: -50%;" class="fa fa-pencil" aria-hidden="true" ></span>
+          </a>
             <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="opensupp()">
-
               <span style="vertical-align: -50%; " class="fa fa-plus fa-lg" aria-hidden="true"></span>
             </a>
       </div>
@@ -75,7 +78,13 @@
       <p>备注: {{ form.memo }}</p>
 
     <hr class="mb-4">
-    <button class="btn btn-primary btn-lg btn-block" type="submit">确认提交</button>
+      <div class="row">
+          <div class="col-md-7"></div>
+          <button class="btn btn-secondary col-md-2">取消</button>
+          <div class="col-md-1"></div>
+          <button class="btn btn-primary col-md-2" type="submit">确认提交</button>
+      </div>
+
       {% csrf_token %}
 
   </form>
@@ -86,6 +95,18 @@
 
 {% block customer_js %}
 <script type="text/javascript">
+
+function editmanu() {
+    var mid=$("#id_manufactory").val();
+    var m_html = 'manufactory_edit/' + mid;
+    window.open(m_html, 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+}
+
+function editsupp() {
+    var sid=$("#id_supplier").val();
+    var s_html = 'supplier_edit/' + sid;
+    window.open(s_html, 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+}
 
 function openmanu() {
 

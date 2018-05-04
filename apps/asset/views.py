@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 import json
 from django.shortcuts import render
-from .models import Host
+from .models import Host, Manufactory, Supplier
 from .forms import ServerAddForm, SupplierForm, ManufactoryForm
 from django.http import HttpResponseRedirect, HttpResponse
 
@@ -20,9 +20,9 @@ def asset_server(request):
 
 
 def server_add(request):
-    '''
+    """
     主机添加
-    '''
+    """
     if request.method == 'POST':
         # ip_managemant = form.cleaned_data['ipmanagemant']
         # ip_other1 = form.cleaned_data['ip_other1']
@@ -59,9 +59,9 @@ def server_add(request):
 
 
 def server_del(request):
-    '''
+    """
     主机删除
-    '''
+    """
     response = {'code': 200, 'message': '删除成功！'}
     hostid = request.GET.get("hostid")
     try:
@@ -74,17 +74,15 @@ def server_del(request):
 
 
 def server_edit(request, nid):
-    '''
+    """
     主机编辑
-    '''
+    """
+    server_obj = Host.objects.filter(id=nid).first()
     if request.method == 'GET':
 
-        server_obj = Host.objects.filter(id=nid).first()
         form = ServerAddForm(instance=server_obj)
         return render(request, 'server_edit.html', {'form': form, 'nid': nid, })
     elif request.method == 'POST':
-
-        server_obj = Host.objects.filter(id=nid).first()
         form = ServerAddForm(request.POST, instance=server_obj)
         if form.is_valid():
             form.save()
@@ -92,9 +90,9 @@ def server_edit(request, nid):
 
 
 def server_detail(request, nid):
-    '''
+    """
     主机详情
-    '''
+    """
 
     if request.method == 'GET':
         host = Host.objects.get(id=nid)
@@ -102,9 +100,9 @@ def server_detail(request, nid):
 
 
 def supplier_add(request):
-    '''
+    """
     供应商添加 
-    '''
+    """
     response = {'message': '添加成功！'}
 
     if request.method == 'POST':
@@ -112,9 +110,7 @@ def supplier_add(request):
             supplier_form = SupplierForm(request.POST)
             if supplier_form.is_valid():
                 supplier_form.save()
-                # return render(request,'supplier_add.html',{'supplier_form':supplier_form,})
         except:
-
             response['message'] = '添加失败！'
         return HttpResponse(response['message'])
     else:
@@ -122,10 +118,45 @@ def supplier_add(request):
         return render(request, 'supplier_add.html', {'supplier_form': supplier_form, })
 
 
+def supplier_edit(request, sid):
+    """
+    供应商修改 
+    """
+    response = {'message': '修改成功！'}
+    supp_obj = Supplier.objects.filter(id=sid).first()
+    if request.method == 'POST':
+        try:
+            supplier_form = SupplierForm(request.POST, instance=supp_obj)
+            if supplier_form.is_valid():
+                supplier_form.save()
+        except:
+            response['message'] = '修改失败！'
+        return HttpResponse(response['message'])
+    else:
+
+        supplier_form = SupplierForm(instance=supp_obj)
+        return render(request, 'supplier_edit.html', {'supplier_form': supplier_form, 'sid': sid})
+
+
+def supplier_del(request, sid):
+    """
+    供应商删除
+    """
+    response = {'message': '删除成功！'}
+
+    try:
+        print(sid)
+        Supplier.objects.filter(id=sid).delete()
+
+    except:
+        response['message'] = '删除失败！'
+    return HttpResponse(response['message'])
+
+
 def manufactory_add(request):
-    '''
+    """
     制造商添加 
-    '''
+    """
     response = {'message': '添加成功！'}
 
     if request.method == 'POST':
@@ -133,11 +164,43 @@ def manufactory_add(request):
             manufactory_form = ManufactoryForm(request.POST)
             if manufactory_form.is_valid():
                 manufactory_form.save()
-                # return render(request,'supplier_add.html',{'supplier_form':supplier_form,})
         except:
-
             response['message'] = '添加失败！'
         return HttpResponse(response['message'])
     else:
         manufactory_form = ManufactoryForm()
         return render(request, 'manufactory_add.html', {'manufactory_form': manufactory_form, })
+
+
+def manufactory_edit(request, mid):
+    """
+    制造商修改 
+    """
+    response = {'message': '修改成功！'}
+    manu_obj = Manufactory.objects.filter(id=mid).first()
+    if request.method == 'POST':
+        try:
+            manufactory_form = ManufactoryForm(request.POST, instance=manu_obj)
+            if manufactory_form.is_valid():
+                manufactory_form.save()
+        except:
+            response['message'] = '修改失败！'
+        return HttpResponse(response['message'])
+    else:
+
+        manufactory_form = ManufactoryForm(instance=manu_obj)
+        return render(request, 'manufactory_edit.html', {'manufactory_form': manufactory_form, 'mid': mid})
+
+
+def manufactory_del(request, mid):
+    """
+    制造商删除
+    """
+    response = {'message': '删除成功！'}
+    print(mid)
+    try:
+        Manufactory.objects.filter(id=mid).delete()
+
+    except:
+        response['message'] = '删除失败！'
+    return HttpResponse(response['message'])

@@ -130,7 +130,69 @@
 {#      <label for="memo">备注</label>#}
 {#      <input type="text" class="form-control" id="memo" name="memo" placeholder="" value="" required>#}
 {#    </div>#}
-    {{ form.as_p }}
+{#    {{ form.as_p }}#}
+      <p>管理IP: {{ form.ip_managemant }}</p>
+
+      <p>其他IP地址1: {{ form.ip_other1 }}</p>
+
+      <p>其他IP地址2: {{ form.ip_other2 }}</p>
+
+      <p>系统类型: {{ form.os_type }}</p>
+
+      <p>操作系统版本: {{ form.os_release }}</p>
+
+      <p>物理CPU个数: {{ form.cpu_physics_count }}</p>
+
+      <p>CPU核数: {{ form.cpu_core_count }}</p>
+
+      <p>逻辑CPU个数: {{ form.cpu_logic_count }}</p>
+
+      <p>内存大小(GB): {{ form.mem_capacity }}</p>
+
+      <p>磁盘容量(GB): {{ form.disk_capacity }}</p>
+
+      <p>Raid类型: {{ form.raid_type }}</p>
+
+      <p>MAC地址: {{ form.mac_address }}</p>
+
+      <p>资产编号: {{ form.name }}</p>
+
+      <p>序列号SN: {{ form.sn }}</p>
+
+      <p>资产类型: {{ form.asset_type }}</p>
+
+      <p>设备型号: {{ form.model }}</p>
+
+      <p style="margin: 0">制造商: </p>
+          <div class="row">
+              <p class="col-md-11">{{ form.manufactory }}</p>
+                <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="openmanu()">
+                  <span style="vertical-align: -50%; " class="fa fa-plus fa-lg " aria-hidden="true" ></span>
+                </a>
+          </div>
+
+
+      <p style="margin: 0">供应商: </p>
+      <div class="row">
+          <p class="col-md-11">{{ form.supplier }}</p>
+
+            <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="opensupp()">
+
+              <span style="vertical-align: -50%; " class="fa fa-plus fa-lg" aria-hidden="true"></span>
+            </a>
+      </div>
+      <p>购买日期: {{ form.trade_date }}</p>
+
+      <p>过保日期: {{ form.expire_date }}</p>
+
+      <p>IDC机房: {{ form.idc }}</p>
+
+      <p>机柜: {{ form.cabinet }}</p>
+
+      <p>U位: {{ form.cabinet_uid }}</p>
+
+      <p>备注: {{ form.memo }}</p>
+
     <hr class="mb-4">
     <button class="btn btn-primary btn-lg btn-block" type="submit">确认提交</button>
       {% csrf_token %}
@@ -139,4 +201,22 @@
 
 </main>
 <div class="col-md-4 col-lg-6"></div>
+{% endblock %}
+
+{% block customer_js %}
+<script type="text/javascript">
+
+function openmanu() {
+
+    window.open('manufactory_add', 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+}
+
+function opensupp() {
+
+    window.open('supplier_add', 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+}
+
+
+
+</script>
 {% endblock %}
