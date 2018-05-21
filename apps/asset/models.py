@@ -8,12 +8,12 @@ from django.db import models
 
 class Host(models.Model):
     ASSET_TYPE_CHOICES = (
-        ('server', u'服务器'),
-        ('virtual', u'虚拟机'),
-        ('firewall', u'防火墙'),
-        ('router', u'路由器'),
-        ('switch', u'防火墙'),
-        ('others', u'其他'),
+        (u'服务器', u'服务器'),
+        (u'虚拟机', u'虚拟机'),
+        (u'防火墙', u'防火墙'),
+        (u'路由器', u'路由器'),
+        (u'路由器', u'防火墙'),
+        (u'其他', u'其他'),
     )
 
 
@@ -29,7 +29,7 @@ class Host(models.Model):
         ('Raid1', 'Raid1'),
         ('Raid5', 'Raid5'),
     )
-    ip_managemant = models.GenericIPAddressField(verbose_name=u'管理IP', unique=True, null=True, blank=True, max_length=32)
+    ip_managemant = models.GenericIPAddressField(verbose_name=u'管理IP', unique=True, max_length=32)
     ip_other1 = models.GenericIPAddressField(verbose_name=u'其他IP地址1', unique=True, blank=True, null=True, max_length=32)
     ip_other2 = models.GenericIPAddressField(verbose_name=u'其他IP地址2', unique=True, blank=True, null=True, max_length=32)
     os_type = models.CharField(verbose_name=u'系统类型', choices=OS_TYPE, null=True, blank=True, max_length=32)

@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/$',TemplateView.as_view(template_name="index.html"),name="index"),
     url(r'^asset_server/$',asset_views.asset_server,name="asset_server"),
+    url(r'^search/$',asset_views.server_search,name="server_search"),
+    url(r'^output_excel/$',asset_views.output_excel,name="output_excel"),
     url(r'^server_add/$',asset_views.server_add,name="server_add"),
     url(r'^server_del/$',asset_views.server_del,name="server_del"),
     url(r'^server_edit/(\d+)/$',asset_views.server_edit,name="server_edit"),

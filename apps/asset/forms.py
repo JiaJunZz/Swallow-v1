@@ -7,7 +7,7 @@
 
 
 
-from django.forms import ModelForm
+from django.forms import ModelForm,forms
 from django.forms import widgets as frwidgets
 from .models import Host, Supplier, Manufactory
 
@@ -35,8 +35,8 @@ class ServerAddForm(ModelForm):
             'model': frwidgets.Input(attrs={'class': 'form-control'}),
             'manufactory': frwidgets.Select(attrs={'class': 'form-control'}),
             'supplier': frwidgets.Select(attrs={'class': 'form-control'}),
-            'trade_date': frwidgets.DateInput(attrs={'class': 'form-control', 'placeholder': 'YYYY/MM/DD'}),
-            'expire_date': frwidgets.DateInput(attrs={'class': 'form-control', 'placeholder': 'YYYY/MM/DD'}),
+            'trade_date': frwidgets.DateInput(attrs={'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
+            'expire_date': frwidgets.DateInput(attrs={'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
             'idc': frwidgets.Select(attrs={'class': 'form-control'}),
             'cabinet': frwidgets.Input(attrs={'class': 'form-control'}),
             'cabinet_uid': frwidgets.Input(attrs={'class': 'form-control'}),

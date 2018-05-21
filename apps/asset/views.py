@@ -2,21 +2,61 @@ from django.shortcuts import render
 
 # Create your views here.
 import json
+from django.db.models import Q
 from django.shortcuts import render
 from .models import Host, Manufactory, Supplier
 from .forms import ServerAddForm, SupplierForm, ManufactoryForm
 from django.http import HttpResponseRedirect, HttpResponse
+from .outexcel import excel_output
 
 
 # Create your views here.
 def asset_server(request):
     host = Host.objects.all()
-    server_num = Host.objects.filter(asset_type="server").count()
-    virtual_num = Host.objects.filter(asset_type="virtual").count()
+    server_num = Host.objects.filter(asset_type="服务器").count()
+    virtual_num = Host.objects.filter(asset_type="虚拟机").count()
     return render(request, 'asset_server.html', {
         'host': host,
         'server_num': server_num,
         'virtual_num': virtual_num})
+
+
+def server_search(request):
+    keyword = request.GET.get('q')
+    error_msg = '请输入关键词'
+    blank_msg = '没有搜索到符合条件的主机'
+    print(keyword)
+
+    if not keyword:
+        return render(request, 'asset_server.html', {'error_msg': error_msg})
+
+    match_list = Host.objects.filter(Q(ip_managemant__icontains=keyword) |
+                                     Q(ip_other1__icontains=keyword) |
+                                     Q(ip_other2__icontains=keyword) |
+                                     Q(os_type__icontains=keyword) |
+                                     Q(mac_address__icontains=keyword) |
+                                     Q(sn__icontains=keyword) |
+                                     Q(asset_type__contains=keyword) |
+                                     Q(model__icontains=keyword) |
+                                     Q(trade_date__icontains=keyword) |
+                                     Q(expire_date__icontains=keyword) )
+
+
+    # Q(manufactory__icontains=keyword) |
+    # Q(supplier__icontains=keyword) |
+
+    # Q(idc__icontains=keyword)
+
+    return render(request, 'asset_server.html', {'host': match_list, 'blank_msg': blank_msg})
+
+
+def output_excel(request):
+    """
+    excel 导出 
+    """
+    host = Host.objects.all()
+    excel_output(host)
+    return HttpResponseRedirect('/asset_server/')
 
 
 def server_add(request):
@@ -50,6 +90,7 @@ def server_add(request):
         # memo = form.cleaned_data['']
 
         form = ServerAddForm(request.POST)
+
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/asset_server/')
@@ -62,10 +103,12 @@ def server_del(request):
     """
     主机删除
     """
+
     response = {'code': 200, 'message': '删除成功！'}
     hostid = request.GET.get("hostid")
+
     try:
-        Host.objects.filter(id=hostid).delete()
+         Host.objects.filter(id=hostid).delete()
 
     except:
         response['code'] = 100
@@ -86,7 +129,10 @@ def server_edit(request, nid):
         form = ServerAddForm(request.POST, instance=server_obj)
         if form.is_valid():
             form.save()
-        return HttpResponseRedirect('/asset_server/')
+        else:
+            return render(request, 'server_edit.html', {'form': form, 'nid': nid, })
+
+    return HttpResponseRedirect('/asset_server/')
 
 
 def server_detail(request, nid):
@@ -110,12 +156,13 @@ def supplier_add(request):
             supplier_form = SupplierForm(request.POST)
             if supplier_form.is_valid():
                 supplier_form.save()
+                return HttpResponse(response['message'])
         except:
             response['message'] = '添加失败！'
-        return HttpResponse(response['message'])
+            return HttpResponse(response['message'])
     else:
         supplier_form = SupplierForm()
-        return render(request, 'supplier_add.html', {'supplier_form': supplier_form, })
+    return render(request, 'supplier_add.html', {'supplier_form': supplier_form, })
 
 
 def supplier_edit(request, sid):
@@ -129,13 +176,14 @@ def supplier_edit(request, sid):
             supplier_form = SupplierForm(request.POST, instance=supp_obj)
             if supplier_form.is_valid():
                 supplier_form.save()
+                return HttpResponse(response['message'])
         except:
             response['message'] = '修改失败！'
-        return HttpResponse(response['message'])
+            return HttpResponse(response['message'])
     else:
 
         supplier_form = SupplierForm(instance=supp_obj)
-        return render(request, 'supplier_edit.html', {'supplier_form': supplier_form, 'sid': sid})
+    return render(request, 'supplier_edit.html', {'supplier_form': supplier_form, 'sid': sid})
 
 
 def supplier_del(request, sid):
@@ -164,12 +212,13 @@ def manufactory_add(request):
             manufactory_form = ManufactoryForm(request.POST)
             if manufactory_form.is_valid():
                 manufactory_form.save()
+                return HttpResponse(response['message'])
         except:
             response['message'] = '添加失败！'
-        return HttpResponse(response['message'])
+            return HttpResponse(response['message'])
     else:
         manufactory_form = ManufactoryForm()
-        return render(request, 'manufactory_add.html', {'manufactory_form': manufactory_form, })
+    return render(request, 'manufactory_add.html', {'manufactory_form': manufactory_form, })
 
 
 def manufactory_edit(request, mid):
@@ -183,13 +232,13 @@ def manufactory_edit(request, mid):
             manufactory_form = ManufactoryForm(request.POST, instance=manu_obj)
             if manufactory_form.is_valid():
                 manufactory_form.save()
+                return HttpResponse(response['message'])
         except:
             response['message'] = '修改失败！'
-        return HttpResponse(response['message'])
+            return HttpResponse(response['message'])
     else:
-
         manufactory_form = ManufactoryForm(instance=manu_obj)
-        return render(request, 'manufactory_edit.html', {'manufactory_form': manufactory_form, 'mid': mid})
+    return render(request, 'manufactory_edit.html', {'manufactory_form': manufactory_form, 'mid': mid})
 
 
 def manufactory_del(request, mid):

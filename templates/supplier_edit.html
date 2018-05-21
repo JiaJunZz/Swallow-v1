@@ -8,7 +8,8 @@
 <form class="needs-validation" novalidate method="POST" action="/supplier_edit/{{ sid }}/">
 
     <div class="col-md-2 col-md-offset-1" style="width:50%">
-    {{ supplier_form.as_p }}
+        <p>厂商名称: {{ supplier_form.name }} {{ supplier_form.name.errors }} </p>
+        <p>支持电话：{{ supplier_form.tel_num }} {{ supplier_form.tel_num.errors }} </p>
         <button class="btn btn-danger" type="button"><a style="text-decoration:none; color:#000000" href="/supplier_del/{{ sid }}/">删除</a></button>
         <button class="btn btn-primary" type="submit">保存</button>
     </div>

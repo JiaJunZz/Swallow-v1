@@ -29,7 +29,6 @@
 <body>
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Swallow</a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="#">Sign out</a>
@@ -42,7 +41,7 @@
         <nav class="col-md-2 d-none d-md-block col-lg-2 bg-light sidebar">
             <div class="sidebar-sticky">
                 <div id="nav-left">
-                    <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+                    <el-menu  class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                              background-color="#f8f9fa"
                              text-color="#262626"
                              >
@@ -64,12 +63,12 @@
                         <el-submenu index="3">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
-                                <span>功能3</span>
+                                <span>自动化运维</span>
                             </template>
                             <el-menu-item-group>
-                                <el-menu-item index="3-1">服务器管理</el-menu-item>
-                                <el-menu-item index="3-2">网络设备管理</el-menu-item>
-                                <el-menu-item index="3-3">机房管理</el-menu-item>
+                                <el-menu-item index="3-1">定时计划管理</el-menu-item>
+                                <el-menu-item index="3-2">巡检脚本</el-menu-item>
+                                <el-menu-item index="3-3">自动化执行</el-menu-item>
                             </el-menu-item-group>
                         </el-submenu>
 

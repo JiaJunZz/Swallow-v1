@@ -131,37 +131,37 @@
 {#      <input type="text" class="form-control" id="memo" name="memo" placeholder="" value="" required>#}
 {#    </div>#}
 {#    {{ form.as_p }}#}
-      <p>管理IP: {{ form.ip_managemant }}</p>
+      <p>管理IP: {{ form.ip_managemant }} {{ form.ip_managemant.errors }}</p>
 
-      <p>其他IP地址1: {{ form.ip_other1 }}</p>
+      <p>其他IP地址1: {{ form.ip_other1 }} {{ form.ip_other1.errors }}</p>
 
-      <p>其他IP地址2: {{ form.ip_other2 }}</p>
+      <p>其他IP地址2: {{ form.ip_other2 }} {{ form.ip_other2.errors }}</p>
 
-      <p>系统类型: {{ form.os_type }}</p>
+      <p>系统类型: {{ form.os_type }} {{ form.os_type.errors }} </p>
 
-      <p>操作系统版本: {{ form.os_release }}</p>
+      <p>操作系统版本: {{ form.os_release }} {{ form.os_release.errors }}</p>
 
-      <p>物理CPU个数: {{ form.cpu_physics_count }}</p>
+      <p>物理CPU个数: {{ form.cpu_physics_count }} {{ form.cpu_physics_count.errors }}</p>
 
-      <p>CPU核数: {{ form.cpu_core_count }}</p>
+      <p>CPU核数: {{ form.cpu_core_count }} {{ form.cpu_core_count.errors }}</p>
 
-      <p>逻辑CPU个数: {{ form.cpu_logic_count }}</p>
+      <p>逻辑CPU个数: {{ form.cpu_logic_count }} {{ form.cpu_logic_count.errors }}</p>
 
-      <p>内存大小(GB): {{ form.mem_capacity }}</p>
+      <p>内存大小(GB): {{ form.mem_capacity }} {{ form.mem_capacity.errors }}</p>
 
-      <p>磁盘容量(GB): {{ form.disk_capacity }}</p>
+      <p>磁盘容量(GB): {{ form.disk_capacity }} {{ form.disk_capacity.errors }}</p>
 
-      <p>Raid类型: {{ form.raid_type }}</p>
+      <p>Raid类型: {{ form.raid_type }} {{ form.raid_type.errors }}</p>
 
-      <p>MAC地址: {{ form.mac_address }}</p>
+      <p>MAC地址: {{ form.mac_address }} {{ form.mac_address.errors }}</p>
 
-      <p>资产编号: {{ form.name }}</p>
+      <p>资产编号: {{ form.name }} {{ form.name.errors }}</p>
 
-      <p>序列号SN: {{ form.sn }}</p>
+      <p>序列号SN: {{ form.sn }} {{ form.sn.errors }}</p>
 
-      <p>资产类型: {{ form.asset_type }}</p>
+      <p>资产类型: {{ form.asset_type }} {{ form.asset_type.errors }}</p>
 
-      <p>设备型号: {{ form.model }}</p>
+      <p>设备型号: {{ form.model }} {{ form.model.errors }}</p>
 
       <p style="margin: 0">制造商: </p>
           <div class="row">
@@ -181,20 +181,25 @@
               <span style="vertical-align: -50%; " class="fa fa-plus fa-lg" aria-hidden="true"></span>
             </a>
       </div>
-      <p>购买日期: {{ form.trade_date }}</p>
+      <p>购买日期: {{ form.trade_date }} {{ form.trade_date.errors }}</p>
 
-      <p>过保日期: {{ form.expire_date }}</p>
+      <p>过保日期: {{ form.expire_date }} {{ form.expire_date.errors }}</p>
 
-      <p>IDC机房: {{ form.idc }}</p>
+      <p>IDC机房: {{ form.idc }} {{ form.idc.errors }}</p>
 
-      <p>机柜: {{ form.cabinet }}</p>
+      <p>机柜: {{ form.cabinet }} {{ form.cabinet.errors }}</p>
 
-      <p>U位: {{ form.cabinet_uid }}</p>
+      <p>U位: {{ form.cabinet_uid }} {{ form.cabinet_uid.errors }}</p>
 
-      <p>备注: {{ form.memo }}</p>
+      <p>备注: {{ form.memo }} {{ form.memo.errors }}</p>
 
     <hr class="mb-4">
-    <button class="btn btn-primary btn-lg btn-block" type="submit">确认提交</button>
+      <div class="row">
+          <div class="col-md-7"></div>
+          <button class="btn btn-secondary col-md-2"><a href="{% url "asset_server" %}">取消</a></button>
+          <div class="col-md-1"></div>
+          <button class="btn btn-primary col-md-2" type="submit">确认提交</button>
+      </div>
       {% csrf_token %}
 
   </form>
