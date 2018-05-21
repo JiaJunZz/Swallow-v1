@@ -3,7 +3,7 @@
 # Python-Django CMDB and Ansible
 
 ## Install guideline:
-  pip list:
+  pip list:  
   Django (2.0.4)    
   mysqlclient (1.3.12)  
   xlwt (1.3.0)  
