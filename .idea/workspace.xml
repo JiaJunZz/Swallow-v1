@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed3a6cd1-0206-4895-a96f-72c3786becd4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/asset/migrations/0003_auto_20180613_1018.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/asset/migrations/0004_auto_20180613_1642.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/apps/asset/migrations/0002_auto_20180420_1358.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/apps/asset/migrations/0003_auto_20180517_1040.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/apps/asset/migrations/0005_auto_20180517_1118.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/asset/migrations/0004_auto_20180517_1046.py" afterPath="$PROJECT_DIR$/apps/asset/migrations/0002_auto_20180612_0832.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Swallow/settings.py" afterPath="$PROJECT_DIR$/Swallow/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Swallow/urls.py" afterPath="$PROJECT_DIR$/Swallow/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/asset/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/apps/asset/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/asset/models.py" afterPath="$PROJECT_DIR$/apps/asset/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/asset/views.py" afterPath="$PROJECT_DIR$/apps/asset/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/a.html" afterPath="$PROJECT_DIR$/templates/a.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/asset_server.html" afterPath="$PROJECT_DIR$/templates/asset_server.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-    </list>
+    <list default="true" id="ed3a6cd1-0206-4895-a96f-72c3786becd4" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/apps/asset/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="414">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#2787#2838#0" expanded="false" />
@@ -678,13 +662,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39952996" sideWeight="0.50214595" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12103408" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12103408" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2247854" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1101,7 +1084,7 @@
     <entry file="file://$PROJECT_DIR$/apps/asset/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#2787#2838#0" expanded="false" />
