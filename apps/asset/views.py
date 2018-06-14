@@ -4,7 +4,7 @@ from django.shortcuts import render
 import json
 from django.db.models import Q
 from django.shortcuts import render
-from .models import Host, Manufactory, Supplier
+from .models import Host, Manufactory, Supplier,IDC
 from .forms import ServerAddForm, SupplierForm, ManufactoryForm
 from django.http import HttpResponseRedirect, HttpResponse
 from .outexcel import excel_output
@@ -15,17 +15,32 @@ def asset_server(request):
     host = Host.objects.all()
     server_num = Host.objects.filter(asset_type="服务器").count()
     virtual_num = Host.objects.filter(asset_type="虚拟机").count()
+    idcs = IDC.objects.all()
+    manufactorys = Manufactory.objects.all()
     return render(request, 'asset_server.html', {
         'host': host,
         'server_num': server_num,
-        'virtual_num': virtual_num})
+        'virtual_num': virtual_num,
+        'idcs':idcs,
+        'manufactorys':manufactorys,})
 
+def change_filter(request):
+    os_type_word = request.GET.get('os_type')
+    asset_type_word = request.GET.get('asset_type')
+    idc_word = request.GET.get('idc')
+    manufactory_word = request.GET.get('manufactory')
+
+    host_list = Host.objects.filter(Q(os_type=os_type_word) |
+                                    Q(asset_type=asset_type_word) |
+                                    Q(idc__name=idc_word) |
+                                    Q(manufactory__name=manufactory_word))
+
+    return render(request, 'change_filter.html',{'host': host_list})
 
 def server_search(request):
     keyword = request.GET.get('q')
     error_msg = '请输入关键词'
     blank_msg = '没有搜索到符合条件的主机'
-    print(keyword)
 
     if not keyword:
         return render(request, 'asset_server.html', {'error_msg': error_msg})

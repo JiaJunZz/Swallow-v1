@@ -34,4 +34,5 @@ urlpatterns = [
     url(r'manufactory_add/$',asset_views.manufactory_add,name="manufactory_add"),
     url(r'manufactory_edit/(\d+)/$',asset_views.manufactory_edit,name="manufactory_edit"),
     url(r'manufactory_del/(\d+)/$', asset_views.manufactory_del, name="manufactory_del"),
+    url(r'^change_filter/$',asset_views.change_filter,name='change_filter')
 ]

@@ -8,50 +8,79 @@
         <p class="text-info">总共有{{ server_num }}台服务器,{{ virtual_num }}台虚拟机</p>
         <div class="row">
             <div class="col-md-7" style="bottom: 0.4rem;">
-                <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown">
-                    分类 <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">功能</a></li>
-                    <li><a href="#">另一个功能</a></li>
-                    <li><a href="#">其他</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">分离的链接</a></li>
-                </ul>
+                <form id="asset_form">
+                    <label>
+                      <select class="form-control" name="asset_type" onchange="change_filter()">
+                        <option value="" style="display:none">资产类型</option>
+                        <option value="server">服务器</option>
+                        <option value="virtual">虚拟机</option>
+                        <option value="other">其他</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      <select class="form-control" name="idc" onchange="change_filter()">
+                        <option value="" style="display:none">IDC机房</option>
+                        {% for idc in idcs %}
+                            <option value="{{idc.name}}"> {{ idc}}</option>
+                        {% endfor %}
+                      </select>
+                    </label>
+
+                    <label>
+                      <select class="form-control" name="os_type" onchange="change_filter()">
+                        <option value="" style="display:none">系统类型</option>
+                        <option value="windows">windows</option>
+                        <option value="centos">centos</option>
+                        <option value="redhat">redhat</option>
+                        <option value="ubuntu">ubuntu</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      <select class="form-control" name="manufactory" onchange="change_filter()">
+                        <option value="">制造商</option>
+                       {% for m in manufactorys %}
+                            <option value="{{m.name}}"> {{m}}</option>
+                       {% endfor %}
+                      </select>
+                    </label>
+                </form>
             </div>
-            </div>
+
             <div class="col-md-3" style="bottom: 0.4rem;">
                 <form class="form-inline" method="get" action="{% url 'server_search' %}">
-                    <input class="form-control mr-sm-1 " type="search" name="q" placeholder="Search..." aria-label="Search">
+                    <input class="form-control mr-sm-1 " type="search" name="q" placeholder="Search..."
+                           aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Search</button>
                     {% csrf_token %}
                 </form>
 
             </div>
-            <div class="col-md-1" >
-            <button type="button" class="btn btn-success btn-sm "><a href="{% url 'output_excel' %}">导出Excel</a></button>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-success btn-sm "><a href="{% url 'output_excel' %}">导出Excel</a>
+                </button>
             </div>
             <div class="col-md-1">
-            <button type="button" class="btn btn-success btn-sm" style="margin-left: -37%"><a href="{% url 'server_add' %}">添加主机</a></button>
+                <button type="button" class="btn btn-success btn-sm" style="margin-left: -37%"><a
+                        href="{% url 'server_add' %}">添加主机</a></button>
             </div>
         </div>
 
         <div class="table-responsive">
 
-            <table class="table table-bordered table-striped" >
+            <table class="table table-bordered table-striped" id="hostlist">
                 <thead>
                 <tr>
                     <th>资产编号</th>
                     <th>管理IP</th>
                     <th>资产类型</th>
                     <th>IDC机房</th>
-                    <th>系统类型</th>
+                    <th>操作系统</th>
                     <th>配置</th>
                     <th>操作</th>
                 </tr>
-                </thead>
+                </thead >
                 <tbody>
 
 
@@ -59,7 +88,7 @@
                     <tr>
                         <td>{{ host.name }}</td>
                         <td>{{ host.ip_managemant }}</td>
-                        <td>{{ host.asset_type }}</td>
+                        <td>{{ host.get_asset_type_display }}</td>
                         <td>{{ host.idc }}</td>
                         <td>{{ host.os_type }} {{ host.os_release }}</td>
                         <td>{{ host.cpu_physics_count }}*{{ host.cpu_core_count }} | {{ host.mem_capacity }}G
@@ -74,39 +103,9 @@
                                 <button type="button" class="btn btn-warning">更新</button>
                                 <button type="button"
                                         class="btn btn-danger delbutton"
-{#                                        data-toggle="modal" data-target="#delServer"#}
-                                         data-id="{{ host.id }}">删除
+                                        {#                                        data-toggle="modal" data-target="#delServer"#}
+                                        data-id="{{ host.id }}">删除
                                 </button>
-
-                                <!-- 删除Modal -->
-{#                                <div class="modal fade" id="delServer" tabindex="-1" role="dialog"#}
-{#                                     aria-labelledby="delServerLabel" aria-hidden="true">#}
-{#                                    <div class="modal-dialog modal-dialog-centered" role="document">#}
-{#                                        <div class="modal-content">#}
-{#                                            <div class="modal-header">#}
-{#                                                <h5 class="modal-title" id="delServerLabel">删除服务器</h5>#}
-{#                                                <button type="button" class="close" data-dismiss="modal"#}
-{#                                                        aria-label="Close">#}
-{#                                                    <span aria-hidden="true">&times;</span>#}
-{#                                                </button>#}
-{#                                            </div>#}
-{#                                            <div class="modal-body">#}
-{#                                                删除此服务器之后，后台将不再保存此服务器信息！#}
-{#                                            </div>#}
-{#                                            <div class="modal-footer">#}
-{#                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">#}
-{#                                                    取消#}
-{#                                                </button>#}
-{#                                                <button type="button"#}
-{#                                                        id="confdelserver"#}
-{#                                                        class="btn btn-primary ">确定#}
-{#                                                </button>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-
-
                             </div>
 
 
@@ -123,7 +122,7 @@
             {% endif %}
 
 
-    </div>
+        </div>
 
     </main>
 
@@ -132,14 +131,10 @@
 
 
 {% block customer_js %}
-
-
     <script type="text/javascript">
-
         $('.delbutton').click(function () {
             var hostid = $(this).attr('data-id');
             console.log(hostid);
-
             $.ajax({
                 type: "GET",
                 url: "/server_del/",
@@ -151,17 +146,28 @@
                     if (arg.code == 200) {
                         window.location.reload();
                         alert(arg.message);
-
                     }
                     else {
                         alert(arg.message)
                     }
                 }
-
             });
+        });
+        function change_filter() {
+            $.ajax({
+                type: "GET",
+                url: "/change_filter/",
+                data: $("#asset_form").serialize(),
+                success: function (data1) {
+{#                    window.location.replace(data1);#}
+{#                    window.location.href(data1);#}
+                    $("#hostlist").html(data1)
 
-        })
+                }
+            });
+        }
     </script>
+
 
 {% endblock %}
 

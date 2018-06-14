@@ -1,0 +1,46 @@
+
+                <thead>
+                <tr>
+                    <th>资产编号</th>
+                    <th>管理IP</th>
+                    <th>资产类型</th>
+                    <th>IDC机房</th>
+                    <th>操作系统</th>
+                    <th>配置</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for host in host %}
+                    <tr>
+                        <td>{{ host.name }}</td>
+                        <td>{{ host.ip_managemant }}</td>
+                        <td>{{ host.get_asset_type_display }}</td>
+                        <td>{{ host.idc }}</td>
+                        <td>{{ host.os_type }} {{ host.os_release }}</td>
+                        <td>{{ host.cpu_physics_count }}*{{ host.cpu_core_count }} | {{ host.mem_capacity }}G
+                            | {{ host.disk_capacity }}GB
+                        </td>
+                        <td id={{ host.id }}>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-info"><a href="/server_detail/{{ host.id }}">详情</a>
+                                </button>
+                                <button type="button" class="btn btn-primary"><a
+                                        href="/server_edit/{{ host.id }}/">修改</a></button>
+                                <button type="button" class="btn btn-warning">更新</button>
+                                <button type="button"
+                                        class="btn btn-danger delbutton"
+                                        {#                                        data-toggle="modal" data-target="#delServer"#}
+                                        data-id="{{ host.id }}">删除
+                                </button>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                {% empty %}
+                    {{ blank_msg }}
+                {% endfor %}
+                </tbody>

@@ -8,12 +8,12 @@ from django.db import models
 
 class Host(models.Model):
     ASSET_TYPE_CHOICES = (
-        (u'服务器', u'服务器'),
-        (u'虚拟机', u'虚拟机'),
-        (u'防火墙', u'防火墙'),
-        (u'路由器', u'路由器'),
-        (u'路由器', u'防火墙'),
-        (u'其他', u'其他'),
+        ('server', u'服务器'),
+        ('virtual', u'虚拟机'),
+        ('firewall', u'防火墙'),
+        ('route', u'路由器'),
+        ('switch', u'交换机'),
+        ('other', u'其他'),
     )
 
 

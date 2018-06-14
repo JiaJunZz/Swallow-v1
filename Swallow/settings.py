@@ -25,7 +25,7 @@ SECRET_KEY = 'j9fqbwb%-n3$pyh34_3%@3^h-p+^5y&ebrodtd#e6h2f)ur1m$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','192.168.123.104']
+ALLOWED_HOSTS = ['*','192.168.123.107']
 
 
 # Application definition
@@ -78,11 +78,18 @@ WSGI_APPLICATION = 'Swallow.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': r'C:/Users/ZJJ/PycharmProjects/django_study/Swallow/db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'swallow',
-        'HOST': '192.168.123.168',
+        'HOST': '192.168.123.166',
         'USER': 'root',
         'PASSWORD': '123456',
         'OPTIONS': {
