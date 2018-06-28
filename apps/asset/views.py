@@ -13,8 +13,8 @@ from .outexcel import excel_output
 # Create your views here.
 def asset_server(request):
     host = Host.objects.all()
-    server_num = Host.objects.filter(asset_type="服务器").count()
-    virtual_num = Host.objects.filter(asset_type="虚拟机").count()
+    server_num = Host.objects.filter(asset_type="server").count()
+    virtual_num = Host.objects.filter(asset_type="virtual").count()
     idcs = IDC.objects.all()
     manufactorys = Manufactory.objects.all()
     return render(request, 'asset_server.html', {
