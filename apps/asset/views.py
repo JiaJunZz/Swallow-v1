@@ -268,3 +268,13 @@ def manufactory_del(request, mid):
     except:
         response['message'] = '删除失败！'
     return HttpResponse(response['message'])
+
+from .tasks import sendmail
+
+
+def home(request):
+    # 耗时任务，
+    sendmail.delay('test@test.com')
+
+
+    return HttpResponse('wanle')

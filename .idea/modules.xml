@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Swallow.iml" filepath="$PROJECT_DIR$/.idea/Swallow.iml" />
-      <module fileurl="file://C:\Users\ZJJ\PycharmProjects\study\django\.idea\django.iml" filepath="C:\Users\ZJJ\PycharmProjects\study\django\.idea\django.iml" />
-      <module fileurl="file://C:\Users\ZJJ\PycharmProjects\study\django_unit1\.idea\django_unit1.iml" filepath="C:\Users\ZJJ\PycharmProjects\study\django_unit1\.idea\django_unit1.iml" />
+      <module fileurl="file://C:/Users/ZJJ/PycharmProjects/study/django/.idea/django.iml" filepath="C:/Users/ZJJ/PycharmProjects/study/django/.idea/django.iml" />
+      <module fileurl="file://C:/Users/ZJJ/PycharmProjects/study/django_unit1/.idea/django_unit1.iml" filepath="C:/Users/ZJJ/PycharmProjects/study/django_unit1/.idea/django_unit1.iml" />
     </modules>
   </component>
 </project>

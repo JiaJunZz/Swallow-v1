@@ -141,11 +141,15 @@ STATICFILES_DIRS = (
 )
 
 # celery setting
-djcelery.setup_loader() #加载djcelery
+# celery中间人 redis://redis服务所在的ip地址:端口/数据库号
 BROKER_URL = 'redis://192.168.123.166:6379/0'
+# celery结果返回，可用于跟踪结果
 CELERY_RESULT_BACKEND = 'redis://192.168.123.166:6379/0'
-CELERY_ACCEPT_CONTENT = ['json']
+
+# celery内容等消息的格式设置
+CELERY_ACCEPT_CONTENT = ['application/json', ]
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_DEFAULT_QUEUE = 'default'
-CELERY_TRACK_STARTED = True
+
+# celery时区设置，使用settings中TIME_ZONE同样的时区
+CELERY_TIMEZONE = TIME_ZONE

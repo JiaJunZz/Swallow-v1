@@ -7,6 +7,8 @@
         <option name="settingsModule" value="Swallow/settings.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
+        <option name="doNotUseTestRunner" value="false" />
+        <option name="trackFilePattern" value="migrations" />
       </configuration>
     </facet>
   </component>
@@ -14,14 +16,14 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/apps" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (swallowenv)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/../Swallow\templates" />
+        <option value="$USER_HOME$/Swallow\templates" />
       </list>
     </option>
   </component>
