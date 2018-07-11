@@ -18,10 +18,10 @@ class Host(models.Model):
 
 
     OS_TYPE = (
-        ('windows', 'Windows'),
-        ('centos', 'Centos'),
-        ('redhat', 'Redhat'),
-        ('ubuntu', 'Ubuntu'),
+        ('Windows', 'Windows'),
+        ('CentOS', 'CentOS'),
+        ('Redhat', 'Redhat'),
+        ('Ubuntu', 'Ubuntu'),
     )
     RAID_TYEP_CHOICES = (
         ('None', '无raid'),

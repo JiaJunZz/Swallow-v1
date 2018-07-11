@@ -7,13 +7,18 @@ from __future__ import absolute_import, unicode_literals
 from celery import task
 from Swallow import celery_app
 from celery import shared_task
-
+from plugin.ansible_api import Ansible_Play
 import time
+from multiprocessing import current_process
 
 
 @celery_app.task
-def sendmail(email):
-    print('start send email to %s' % email)
-    time.sleep(5) #休息5秒
-    print('success')
-    return True
+def get_info_ansible(ip_managemant,module,m_args=''):
+    #ip_managemant,module, module_args
+    current_process()._config = {'semprefix': '/mp'}
+
+    ansible = Ansible_Play('/etc/ansible/hosts')
+    ansible.run_Adhoc(ip_managemant,module,m_args)
+    result = ansible.get_result()
+    return result
+

@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from .outexcel import excel_output
 
 
+
 # Create your views here.
 def asset_server(request):
     host = Host.objects.all()
@@ -269,12 +270,39 @@ def manufactory_del(request, mid):
         response['message'] = '删除失败！'
     return HttpResponse(response['message'])
 
-from .tasks import sendmail
 
+from .tasks import get_info_ansible
 
-def home(request):
-    # 耗时任务，
-    sendmail.delay('test@test.com')
+def server_update(request):
+    # 耗时任务
+    ip = '192.168.123.166'
+    res_setup = get_info_ansible.delay(ip,'setup')
+    info = res_setup.get()
+    if info.get('success'):
+        ipv4_all = info['success'][ip]['ansible_facts']['ansible_all_ipv4_addresses']
+        ipv4_other = ipv4_all.remove[ip]
+        ip_other1 = ipv4_other[0]
+        ip_other2 = ipv4_other[1]
+        os_type=info['success'][ip]['ansible_facts']['ansible_distribution']
+        os_release=info['success'][ip]['ansible_facts']['ansible_distribution_version']
+        cpu_physics_count=info['success'][ip]['ansible_facts']['ansible_processor_count']
+        cpu_core_count=info['success'][ip]['ansible_facts']['ansible_processor_cores']
+        cpu_logic_count=info['success'][ip]['ansible_facts']['ansible_processor_vcpus']
+        mem_capacity=info['success'][ip]['ansible_facts']['ansible_memtotal_mb']
+        mac_address=info['success'][ip]['ansible_facts']['ansible_default_ipv4']['macaddress']
+        sn = info['success'][ip]['ansible_facts']['ansible_product_serial']
+        model = info['success'][ip]['ansible_facts']['ansible_product_name']
 
-
-    return HttpResponse('wanle')
+        print(os_type)
+        print(os_release)
+        print(cpu_physics_count)
+        print(cpu_core_count)
+        print(cpu_logic_count)
+        print(mem_capacity)
+        print(mac_address)
+        print(sn)
+        print(model)
+        print(ipv4_all)
+        print(ip_other1)
+        print(ip_other2)
+    return HttpResponse(json.dumps(info))

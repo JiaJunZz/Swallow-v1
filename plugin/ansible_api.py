@@ -67,7 +67,7 @@ class Ansible_Play(object):
         # 把inventory传递给variable_manager管理
         self.variable_manager = VariableManager(loader=self.loader, inventory=self.inventory)
 
-    def run_Adhoc(self, hosts, module_name, module_args):
+    def run_Adhoc(self, hosts, module_name, module_args=''):
         ###########################
         #run module from andible ad-hoc.
         ##########################
@@ -122,14 +122,14 @@ class Ansible_Play(object):
         return self.results_raw
 
 
-if __name__ == '__main__':
+##if __name__ == '__main__':
     #sources = [{"hostname": "192.168.123.166", "ansible_port": 22, "ansible_user": "root", "ansible_ssh_pass": "123456"},
     #           {"hostname": "192.168.123.168", "ansible_port": 22, "ansible_user": "root", "ansible_ssh_pass": "123456"}]
-    ansible = Ansible_Play('/etc/ansible/hosts')
+##    ansible = Ansible_Play('/etc/ansible/hosts')
     ## run adhoc
-    ansible.run_Adhoc('192.168.123.166','setup','filter=ansible_all_ipv4_addresses')
+##    ansible.run_Adhoc('192.168.123.166','setup','filter=ansible_all_ipv4_addresses')
 
     ## run playbook
     #ansible.run_Playbook(['/etc/ansible/main.yml'])
-    result = ansible.get_result()
-    print(result)
+##    result = ansible.get_result()
+##    print(result)
