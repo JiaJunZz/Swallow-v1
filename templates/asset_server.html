@@ -100,7 +100,7 @@
                                 </button>
                                 <button type="button" class="btn btn-primary"><a
                                         href="/server_edit/{{ host.id }}/">修改</a></button>
-                                <button type="button" class="btn btn-warning">更新</button>
+                                <button type="button" class="btn btn-warning"><a href="{% url 'server_update' host.ip_managemant %}">更新</a></button>
                                 <button type="button"
                                         class="btn btn-danger delbutton"
                                         {#                                        data-toggle="modal" data-target="#delServer"#}

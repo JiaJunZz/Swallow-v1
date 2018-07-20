@@ -8,7 +8,7 @@ from .models import Host, Manufactory, Supplier,IDC
 from .forms import ServerAddForm, SupplierForm, ManufactoryForm
 from django.http import HttpResponseRedirect, HttpResponse
 from .outexcel import excel_output
-
+from .tasks import get_info_ansible
 
 
 # Create your views here.
@@ -80,33 +80,7 @@ def server_add(request):
     主机添加
     """
     if request.method == 'POST':
-        # ip_managemant = form.cleaned_data['ipmanagemant']
-        # ip_other1 = form.cleaned_data['ip_other1']
-        # ip_other2 = form.cleaned_data['ip_other2']
-        # # os_type = form.cleaned_data['os_type']
-        # os_release = form.cleaned_data['os_release']
-        # cpu_physics_count = form.cleaned_data['cpu_physics_count']
-        # cpu_core_count = form.cleaned_data['']
-        # cpu_logic_count = form.cleaned_data['']
-        # mem_capacity = form.cleaned_data['']
-        # disk_capacity = form.cleaned_data['']
-        # raid_type = form.cleaned_data['']
-        # mac_address = form.cleaned_data['']
-        # name = form.cleaned_data['']
-        # sn = form.cleaned_data['']
-        # asset_type = form.cleaned_data['']
-        # model = form.cleaned_data['']
-        # manufactory = form.cleaned_data['']
-        # supplier = form.cleaned_data['']
-        # trade_date = form.cleaned_data['']
-        # expire_date = form.cleaned_data['']
-        # idc = form.cleaned_data['']
-        # cabinet = form.cleaned_data['']
-        # cabinet_uid = form.cleaned_data['']
-        # memo = form.cleaned_data['']
-
         form = ServerAddForm(request.POST)
-
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/asset_server/')
@@ -138,7 +112,6 @@ def server_edit(request, nid):
     """
     server_obj = Host.objects.filter(id=nid).first()
     if request.method == 'GET':
-
         form = ServerAddForm(instance=server_obj)
         return render(request, 'server_edit.html', {'form': form, 'nid': nid, })
     elif request.method == 'POST':
@@ -271,38 +244,51 @@ def manufactory_del(request, mid):
     return HttpResponse(response['message'])
 
 
-from .tasks import get_info_ansible
 
-def server_update(request):
-    # 耗时任务
-    ip = '192.168.123.166'
+def server_update(request,hip):
+    # 通过celery执行耗时ansible任务
+    ip = hip
     res_setup = get_info_ansible.delay(ip,'setup')
-    info = res_setup.get()
+    info = res_setup.get(propagate=False)
+    # QuerySet 获取对应IP的对象
+    host = Host.objects.get(ip_managemant=ip)
     if info.get('success'):
         ipv4_all = info['success'][ip]['ansible_facts']['ansible_all_ipv4_addresses']
-        ipv4_other = ipv4_all.remove[ip]
-        ip_other1 = ipv4_other[0]
-        ip_other2 = ipv4_other[1]
+        ipv4_all.remove(ip)
+        if len(ipv4_all) >= 1:
+            # update ip_other1
+            ip_other1 = ipv4_all[0]
+            host.ip_other1 = ip_other1
+        if len(ipv4_all) >= 2:
+            # update ip_other2
+            ip_other2 = ipv4_all[1]
+            host.ip_other2 = ip_other2
+        # update os_type
         os_type=info['success'][ip]['ansible_facts']['ansible_distribution']
+        host.os_type = os_type
+        # update os_type
         os_release=info['success'][ip]['ansible_facts']['ansible_distribution_version']
+        host.os_release = os_release
+        # update cpu_physics_count
         cpu_physics_count=info['success'][ip]['ansible_facts']['ansible_processor_count']
+        host.cpu_physics_count = cpu_physics_count
+        # update cpu_core_count
         cpu_core_count=info['success'][ip]['ansible_facts']['ansible_processor_cores']
+        host.cpu_core_count = cpu_core_count
+        # update cpu_logic_count
         cpu_logic_count=info['success'][ip]['ansible_facts']['ansible_processor_vcpus']
-        mem_capacity=info['success'][ip]['ansible_facts']['ansible_memtotal_mb']
+        host.cpu_logic_count = cpu_logic_count
+        # update mem_capacity
+        mem_capacity=float(info['success'][ip]['ansible_facts']['ansible_memtotal_mb'])/1024
+        host.mem_capacity = mem_capacity
+        # update mac_address
         mac_address=info['success'][ip]['ansible_facts']['ansible_default_ipv4']['macaddress']
+        host.mac_address = mac_address
+        # update sn
         sn = info['success'][ip]['ansible_facts']['ansible_product_serial']
+        host.sn = sn
+        # update model
         model = info['success'][ip]['ansible_facts']['ansible_product_name']
-
-        print(os_type)
-        print(os_release)
-        print(cpu_physics_count)
-        print(cpu_core_count)
-        print(cpu_logic_count)
-        print(mem_capacity)
-        print(mac_address)
-        print(sn)
-        print(model)
-        print(ipv4_all)
-        print(ip_other1)
-        print(ip_other2)
-    return HttpResponse(json.dumps(info))
+        host.model = model
+        host.save()
+    return HttpResponseRedirect('/asset_server/')

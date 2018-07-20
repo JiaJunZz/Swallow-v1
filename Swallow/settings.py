@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os,sys
-import djcelery
+from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'asset',
     'users',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -141,6 +142,7 @@ STATICFILES_DIRS = (
 )
 
 # celery setting
+
 # celery中间人 redis://redis服务所在的ip地址:端口/数据库号
 BROKER_URL = 'redis://192.168.123.166:6379/0'
 # celery结果返回，可用于跟踪结果
@@ -152,4 +154,14 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
 # celery时区设置，使用settings中TIME_ZONE同样的时区
-CELERY_TIMEZONE = TIME_ZONE
+# CELERY_TIMEZONE = 'Asia/Shanghai'
+CELERY_TIMEZONE = 'UTC'
+# celery crontab
+# CELERYBEAT_SCHEDULE = {
+#     # 每小时执行一次
+#     'add-every-hour': {
+#         'task': 'apps.asset.tasks.cron_info_ansible',
+#         'schedule': crontab(minute='*/3'),
+#         'args': ()
+#     },
+# }

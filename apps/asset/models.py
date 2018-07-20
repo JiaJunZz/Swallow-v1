@@ -37,7 +37,7 @@ class Host(models.Model):
     cpu_physics_count = models.SmallIntegerField(verbose_name=u'物理CPU个数', null=True, blank=True)
     cpu_core_count = models.SmallIntegerField(verbose_name=u'CPU核数', null=True, blank=True)
     cpu_logic_count = models.SmallIntegerField(verbose_name=u'逻辑CPU个数', null=True, blank=True)
-    mem_capacity = models.IntegerField(verbose_name=u'内存大小(GB)', null=True, blank=True)
+    mem_capacity = models.DecimalField(verbose_name=u'内存大小(GB)', null=True, blank=True,max_digits=10,decimal_places=2)
     disk_capacity = models.FloatField(verbose_name=u'磁盘容量(GB)', null=True, blank=True)
     raid_type = models.CharField(verbose_name=u'raid类型', null=True, blank=True, max_length=64,
                                  choices=RAID_TYEP_CHOICES, default='None')
