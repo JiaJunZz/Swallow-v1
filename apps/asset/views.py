@@ -186,10 +186,10 @@ def supplier_del(request, sid):
     response = {'message': '删除成功！'}
 
     try:
-        print(sid)
         Supplier.objects.filter(id=sid).delete()
+        response['message'] = '删除成功！'
 
-    except:
+    except Exception as e:
         response['message'] = '删除失败！'
     return HttpResponse(response['message'])
 
@@ -239,10 +239,8 @@ def manufactory_del(request, mid):
     制造商删除
     """
     response = {'message': '删除成功！'}
-    print(mid)
     try:
         Manufactory.objects.filter(id=mid).delete()
-
     except:
         response['message'] = '删除失败！'
     return HttpResponse(response['message'])
