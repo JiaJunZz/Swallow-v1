@@ -96,10 +96,10 @@
                         </td>
                         <td id={{ host.id }}>
                             <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-info"><a href="/server_detail/{{ host.id }}">详情</a>
+                                <button type="button" class="btn btn-info"><a href="{% url 'server_detail' host.id %}">详情</a>
                                 </button>
                                 <button type="button" class="btn btn-primary"><a
-                                        href="/server_edit/{{ host.id }}/">修改</a></button>
+                                        href="{% url 'server_edit' host.id %}">修改</a></button>
                                 <button type="button" class="btn btn-warning"><a href="{% url 'server_update' host.ip_managemant %}">更新</a></button>
                                 <button type="button"
                                         class="btn btn-danger delbutton"
@@ -137,7 +137,7 @@
             console.log(hostid);
             $.ajax({
                 type: "GET",
-                url: "/server_del/",
+                url: "{% url 'server_del' %}",
                 data: {
                     'hostid': hostid
                 },
@@ -156,11 +156,11 @@
         function change_filter() {
             $.ajax({
                 type: "GET",
-                url: "/change_filter/",
+                url: "{% url 'change_filter' %}",
                 data: $("#asset_form").serialize(),
                 success: function (data1) {
 {#                    window.location.replace(data1);#}
-{#                    window.location.href(data1);#}
+            {#                    window.location.href(data1);#}
                     $("#hostlist").html(data1)
 
                 }

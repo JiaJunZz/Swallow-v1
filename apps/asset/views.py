@@ -2,11 +2,14 @@ from django.shortcuts import render
 
 # Create your views here.
 import json
+
 from django.db.models import Q
 from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+
 from .models import Host, Manufactory, Supplier,IDC
 from .forms import ServerAddForm, SupplierForm, ManufactoryForm
-from django.http import HttpResponseRedirect, HttpResponse
 from .outexcel import excel_output
 from .tasks import get_info_ansible
 
@@ -50,6 +53,7 @@ def server_search(request):
                                      Q(ip_other1__icontains=keyword) |
                                      Q(ip_other2__icontains=keyword) |
                                      Q(os_type__icontains=keyword) |
+                                     Q(os_release__icontains=keyword) |
                                      Q(mac_address__icontains=keyword) |
                                      Q(sn__icontains=keyword) |
                                      Q(asset_type__contains=keyword) |
@@ -72,7 +76,7 @@ def output_excel(request):
     """
     host = Host.objects.all()
     excel_output(host)
-    return HttpResponseRedirect('/asset_server/')
+    return HttpResponseRedirect(reverse(asset_server))
 
 
 def server_add(request):
@@ -83,7 +87,7 @@ def server_add(request):
         form = ServerAddForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/asset_server/')
+            return HttpResponseRedirect(reverse(asset_server))
     else:
         form = ServerAddForm()
     return render(request, 'server_add.html', {'form': form})
@@ -121,7 +125,7 @@ def server_edit(request, nid):
         else:
             return render(request, 'server_edit.html', {'form': form, 'nid': nid, })
 
-    return HttpResponseRedirect('/asset_server/')
+    return HttpResponseRedirect(reverse(asset_server))
 
 
 def server_detail(request, nid):
@@ -291,4 +295,4 @@ def server_update(request,hip):
         model = info['success'][ip]['ansible_facts']['ansible_product_name']
         host.model = model
         host.save()
-    return HttpResponseRedirect('/asset_server/')
+    return HttpResponseRedirect(reverse(asset_server))

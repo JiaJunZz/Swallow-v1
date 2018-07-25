@@ -7,7 +7,7 @@
 
   <h5 class="mb-3 text-success">修改主机</h5>
 
-  <form class="needs-validation" novalidate method="POST" action="/server_edit/{{ nid }}/">
+  <form class="needs-validation" novalidate method="POST" action="{% url 'server_edit' nid %}">
 {#    {{ form.as_p }}#}
 
       <p>管理IP: {{ form.ip_managemant }} {{ form.ip_managemant.errors }}</p>

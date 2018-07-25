@@ -69,5 +69,6 @@ def cron_info_ansible():
             model = info['success'][ip]['ansible_facts']['ansible_product_name']
             host.model = model
             host.save()
+        return info
 
 

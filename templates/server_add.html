@@ -6,132 +6,12 @@
 
   <form class="needs-validation" novalidate method="POST" action="{% url 'server_add' %}">
 
-{#    <div class="mb-3">#}
-{#      <label for="ip_managemant">管理IP</label>#}
-{#      <input type="text" class="form-control" name="ip_managemant" id="ip_managemant" placeholder="请输入管理IP" value="" required>#}
-{#    </div>#}
-{#    <div class="row">#}
-{#      <div class="col-md-6 mb-3">#}
-{#        <label for="ip_other1">其他IP地址1</label>#}
-{#        <input type="text" class="form-control" name="ip_other1" id="ip_other1" placeholder="请输入其他IP" value="" required>#}
-{#      </div>#}
-{#      <div class="col-md-6 mb-3">#}
-{#        <label for="ip_other">其他IP地址2</label>#}
-{#        <input type="text" class="form-control" name="ip_other2" id="ip_other2"  placeholder="请输入其他IP" value="" required>#}
-{#      </div>#}
-{#    </div>#}
-{#    <div class="row">#}
-{#      <div class="col-md-6 mb-3">#}
-{#        <label for="os_type">系统类型</label>#}
-{#        <select class="custom-select d-block w-100" id="os_type" name="os_type" required>#}
-{#          <option value="">Choose...</option>#}
-{#            <option>Windows</option>#}
-{#            <option>Centos</option>#}
-{#            <option>Redhat</option>#}
-{#            <option>Ubuntu</option>#}
-{#        </select>#}
-{#      </div>#}
-{#      <div class="col-md-6 mb-3">#}
-{#        <label for="os_release">操作系统版本</label>#}
-{#        <input type="text" class="form-control" name="os_release" id="os_release" placeholder="操作系统版本" value="" required>#}
-{#      </div>#}
-{#    </div>#}
-{#    <div class="row">#}
-{#      <div class="col-md-4 mb-3">#}
-{#        <label for="cpu_physics_count">物理CPU个数</label>#}
-{#        <input type="text" class="form-control" id="cpu_physics_count" name="cpu_physics_count" placeholder="" value="" required>#}
-{#      </div>#}
-{#      <div class="col-md-4 mb-3">#}
-{#        <label for="cpu_core_count">CPU核数</label>#}
-{#        <input type="text" class="form-control" id="cpu_core_count" name="cpu_core_count" placeholder="" value="" required>#}
-{#      </div>#}
-{#      <div class="col-md-4 mb-3">#}
-{#        <label for="cpu_logic_count">逻辑CPU个数</label>#}
-{#        <input type="text" class="form-control" id="cpu_logic_count" name="cpu_logic_count" placeholder="" value="" required>#}
-{#      </div>#}
-{#    </div>#}
-{#    <div class="mb-3">#}
-{#      <label for="mem_capacity">内存大小(GB)</label>#}
-{#      <input type="text" class="form-control" id="mem_capacity" name="mem_capacity" placeholder="" value="" required>#}
-{#    </div>#}
-{#    <div class="row">#}
-{#      <div class="col-md-6 mb-3">#}
-{#        <label for="disk_capacity">磁盘容量(GB)</label>#}
-{#        <input type="text" class="form-control" id="disk_capacity" name="disk_capacity" placeholder="" value="" required>#}
-{#      </div>#}
-{#      <div class="col-md-6 mb-3">#}
-{#        <label for="raid_type">raid类型</label>#}
-{#        <select class="custom-select d-block w-100" id="raid_type" name="raid_type" required>#}
-{#          <option value="">Choose...</option>#}
-{#          <option>无raid</option>#}
-{#          <option>Raid0</option>#}
-{#          <option>Raid1</option>#}
-{#          <option>Raid5</option>#}
-{#        </select>#}
-{#      </div>#}
-{#    </div>#}
-{#    <div class="mb-3">#}
-{#      <label for="mac_address">MAC地址</label>#}
-{#      <input type="text" class="form-control" id="mac_address" name="mac_address" placeholder="" value="" required>#}
-{#    </div>#}
-{#    <div class="mb-3">#}
-{#      <label for="name">资产编号</label>#}
-{#      <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required>#}
-{#    </div>#}
-{#      <div class="mb-3">#}
-{#        <label for="sn">序列号</label>#}
-{#      <input type="text" class="form-control" id="sn" name="sn" placeholder="" value="" required>#}
-{#    </div>#}
-{#    <div class="mb-3">#}
-{#      <label for="asset_type">资产类型</label>#}
-{#      <input type="text" class="form-control" id="asset_type" name="asset_type" placeholder="" value="" required>#}
-{#    </div>#}
-{##}
-{#    <div class="row">#}
-{#      <div class="col-md-6 mb-3">#}
-{#        <label for="manufactory">制造商</label>#}
-{#        <input type="text" class="form-control" id="manufactory" name="manufactory" placeholder="" value="" required>#}
-{#      </div>#}
-{#        <div class="col-md-6 mb-3">#}
-{#      <label for="model">设备型号</label>#}
-{#      <input type="text" class="form-control" id="model" name="model" placeholder="" value="" required>#}
-{#    </div>#}
-{#        </div>#}
-{#    <div class="mb-3">#}
-{#      <label for="supplier">供应商</label>#}
-{#      <input type="text" class="form-control" id="supplier" name="supplier" placeholder="" value="" required>#}
-{#    </div>#}
-{#    <div class="mb-3">#}
-{#      <label for="trade_date">购买日期</label>#}
-{#      <input type="text" class="form-control" id="trade_date" name="trade_date" placeholder="" value="" required>#}
-{#    </div>#}
-{#    <div class="mb-3">#}
-{#      <label for="expire_date">过保日期</label>#}
-{#      <input type="text" class="form-control" id="expire_date" name="expire_date" placeholder="" value="" required>#}
-{#    </div>#}
-{#    <div class="row">#}
-{#      <div class="col-md-4 mb-3">#}
-{#        <label for="idc">IDC机房</label>#}
-{#        <select class="custom-select d-block w-100" id="idc" name="idc" required>#}
-{#          <option value="">Choose...</option>#}
-{#          <option>sh</option>#}
-{#        </select>#}
-{#      </div>#}
-{#      <div class="col-md-4 mb-3">#}
-{#        <label for="cabinet">机柜</label>#}
-{#        <input type="text" class="form-control" id="cabinet" name="cabinet" placeholder="" value="" required>#}
-{#      </div>#}
-{#      <div class="col-md-4 mb-3">#}
-{#        <label for="cabinet_uid">U位</label>#}
-{#        <input type="text" class="form-control" id="cabinet_uid" name="cabinet_uid" placeholder="" value="" required>#}
-{#      </div>#}
-{#    </div>#}
-{#    <div class="mb-3">#}
-{#      <label for="memo">备注</label>#}
-{#      <input type="text" class="form-control" id="memo" name="memo" placeholder="" value="" required>#}
-{#    </div>#}
-{#    {{ form.as_p }}#}
-      <p>管理IP: {{ form.ip_managemant }} {{ form.ip_managemant.errors }}</p>
+      <p>管理IP:</p>
+      <div class="row">
+          <p class="col-md-11">{{ form.ip_managemant }} </p>
+          <p class="col-md-1" style="display:flex;justify-content:center;align-items:center;color: red"> * </p>
+      </div>
+      <p>{{ form.ip_managemant.errors }}</p>
 
       <p>其他IP地址1: {{ form.ip_other1 }} {{ form.ip_other1.errors }}</p>
 
@@ -155,11 +35,21 @@
 
       <p>MAC地址: {{ form.mac_address }} {{ form.mac_address.errors }}</p>
 
-      <p>资产编号: {{ form.name }} {{ form.name.errors }}</p>
+      <p>资产编号:</p>
+      <div class="row">
+          <p class="col-md-11">{{ form.name }} </p>
+          <p class="col-md-1" style="display:flex;justify-content:center;align-items:center;color: red"> * </p>
+      </div>
+      <p>{{ form.name.errors }}</p>
 
       <p>序列号SN: {{ form.sn }} {{ form.sn.errors }}</p>
 
-      <p>资产类型: {{ form.asset_type }} {{ form.asset_type.errors }}</p>
+      <p>资产类型:</p>
+      <div class="row">
+          <p class="col-md-11">{{ form.asset_type }}</p>
+          <p class="col-md-1" style="display:flex;justify-content:center;align-items:center;color: red"> * </p>
+      </div>
+      <p>{{ form.asset_type.errors }}</p>
 
       <p>设备型号: {{ form.model }} {{ form.model.errors }}</p>
 
@@ -170,6 +60,7 @@
                   <span style="vertical-align: -50%; " class="fa fa-plus fa-lg " aria-hidden="true" ></span>
                 </a>
           </div>
+      <p>{{ form.manufactory.errors }}</p>
 
 
       <p style="margin: 0">供应商: </p>
@@ -181,11 +72,18 @@
               <span style="vertical-align: -50%; " class="fa fa-plus fa-lg" aria-hidden="true"></span>
             </a>
       </div>
+      {{ form.supplier.errors }}
+
       <p>购买日期: {{ form.trade_date }} {{ form.trade_date.errors }}</p>
 
       <p>过保日期: {{ form.expire_date }} {{ form.expire_date.errors }}</p>
 
-      <p>IDC机房: {{ form.idc }} {{ form.idc.errors }}</p>
+      <p>IDC机房:</p>
+      <div class="row">
+          <p class="col-md-11">{{ form.idc }}</p>
+          <p class="col-md-1" style="display:flex;justify-content:center;align-items:center;color: red"> * </p>
+      </div>
+      <p>{{ form.idc.errors }}</p>
 
       <p>机柜: {{ form.cabinet }} {{ form.cabinet.errors }}</p>
 

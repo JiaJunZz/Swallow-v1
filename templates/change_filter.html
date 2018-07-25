@@ -25,10 +25,10 @@
                         </td>
                         <td id={{ host.id }}>
                             <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-info"><a href="/server_detail/{{ host.id }}">详情</a>
+                                <button type="button" class="btn btn-info"><a href="{% url 'server_detail' host.id%}">详情</a>
                                 </button>
                                 <button type="button" class="btn btn-primary"><a
-                                        href="/server_edit/{{ host.id }}/">修改</a></button>
+                                        href="{% url 'server_edit' host.id %}">修改</a></button>
                                 <button type="button" class="btn btn-warning">更新</button>
                                 <button type="button"
                                         class="btn btn-danger delbutton"
