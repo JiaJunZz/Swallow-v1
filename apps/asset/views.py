@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 from .models import Host, Manufactory, Supplier,IDC
-from .forms import ServerAddForm, SupplierForm, ManufactoryForm
+from .forms import ServerAddForm, SupplierForm, ManufactoryForm,IdcForm
 from .outexcel import excel_output
 from .tasks import get_info_ansible
 
@@ -245,6 +245,53 @@ def manufactory_del(request, mid):
         response['message'] = '删除失败！'
     return HttpResponse(response['message'])
 
+def idc_add(request):
+    """
+    机房添加
+    """
+    response = {'message': '添加成功！'}
+    if request.method == 'POST':
+            try:
+                idc_form = IdcForm(request.POST)
+                if idc_form.is_valid():
+                    idc_form.save()
+                    return HttpResponse(response['message'])
+            except:
+                response['message'] = '添加失败！'
+                return HttpResponse(response['message'])
+    else:
+        idc_form = IdcForm()
+    return render(request, 'idc_add.html', {'idc_form': idc_form, })
+
+def idc_edit(request, iid):
+    """
+    机房修改
+    """
+    response = {'message': '修改成功！'}
+    idc_obj = IDC.objects.filter(id=iid).first()
+    if request.method == 'POST':
+        try:
+            idc_form = IdcForm(request.POST, instance=idc_obj)
+            if idc_form.is_valid():
+                idc_form.save()
+                return HttpResponse(response['message'])
+        except:
+            response['message'] = '修改失败！'
+            return HttpResponse(response['message'])
+    else:
+        idc_form = IdcForm(instance=idc_obj)
+    return render(request, 'idc_edit.html', {'idc_form': idc_form, 'iid': iid})
+
+def idc_del(request, iid):
+    """
+    机房删除
+    """
+    response = {'message': '删除成功！'}
+    try:
+        IDC.objects.filter(id=iid).delete()
+    except:
+        response['message'] = '删除失败！'
+    return HttpResponse(response['message'])
 
 
 def server_update(request,hip):

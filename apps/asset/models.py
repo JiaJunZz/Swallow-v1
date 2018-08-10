@@ -97,7 +97,7 @@ class Supplier(models.Model):
 
 
 class IDC(models.Model):
-    name = models.CharField(verbose_name=u'机房名称', max_length=60)
+    name = models.CharField(verbose_name=u'机房名称', max_length=60,unique=True)
     address = models.CharField(verbose_name=u'机房地址', max_length=255)
     area = models.CharField(verbose_name=u'机房区域', blank=True, null=True, max_length=60)
     # cabinet = models.ForeignKey('Cabinet', blank=True, null=True, max_length=60)

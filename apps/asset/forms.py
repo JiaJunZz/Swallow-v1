@@ -5,11 +5,9 @@
 # @Email   : 597105373@qq.com
 
 
-
-
-from django.forms import ModelForm,forms
+from django.forms import ModelForm
 from django.forms import widgets as frwidgets
-from .models import Host, Supplier, Manufactory
+from .models import Host, Supplier, Manufactory, IDC
 
 
 class ServerAddForm(ModelForm):
@@ -63,29 +61,12 @@ class ManufactoryForm(ModelForm):
         }
         exclude = ['create_date', 'update_date']
 
-#
-# class ServeraddForm(forms.Form):
-#     ip_managemant = forms.GenericIPAddressField(max_length=32)
-#     ip_other1 = forms.GenericIPAddressField(max_length=32)
-#     ip_other2 = forms.GenericIPAddressField(max_length=32)
-#     os_type = forms.ChoiceField()
-#     os_release = forms.CharField()
-#     cpu_physics_count = forms.IntegerField()
-#     cpu_core_count = forms.IntegerField
-#     cpu_logic_count = forms.IntegerField()
-#     mem_capacity = forms.IntegerField()
-#     disk_capacity = forms.FloatField()
-#     raid_type = forms.CharField()
-#     mac_address = forms.CharField(max_length=64)
-#     name = forms.CharField(max_length=64,required=True)
-#     sn = forms.CharField(max_length=128,required=True)
-#     # asset_type = forms.ChoiceField(max_length=32)
-#     model = forms.CharField(max_length=255)
-#     # manufactory = forms.ChoiceField()
-#     # supplier = forms.ChoiceField()
-#     trade_date = forms.DateField()
-#     expire_date = forms.DateField()
-#     # idc = forms.ChoiceField()
-#     cabinet = forms.CharField()
-#     cabinet_uid = forms.CharField()
-#     memo = forms.CharField(max_length=255)
+class IdcForm(ModelForm):
+    class Meta:
+        model = IDC
+        widgets = {
+            'name': frwidgets.Input(attrs={'class': 'form-control', }),
+            'address': frwidgets.Input(attrs={'class': 'form-control', }),
+            'area': frwidgets.Input(attrs={'class': 'form-control', }),
+        }
+        exclude = ['create_date', 'update_date']

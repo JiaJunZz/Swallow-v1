@@ -78,12 +78,24 @@
 
       <p>过保日期: {{ form.expire_date }} {{ form.expire_date.errors }}</p>
 
-      <p>IDC机房:</p>
+      <p style="margin: 0">IDC机房:</p>
       <div class="row">
-          <p class="col-md-11">{{ form.idc }}</p>
+          <p class="col-md-10">{{ form.idc }}</p>
+
+          <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="openidc()">
+
+              <span style="vertical-align: -50%; " class="fa fa-plus fa-lg" aria-hidden="true"></span>
+          </a>
           <p class="col-md-1" style="display:flex;justify-content:center;align-items:center;color: red"> * </p>
       </div>
       <p>{{ form.idc.errors }}</p>
+
+{#      <p>IDC机房:</p>#}
+{#      <div class="row">#}
+{#          <p class="col-md-11">{{ form.idc }}</p>#}
+{#          <p class="col-md-1" style="display:flex;justify-content:center;align-items:center;color: red"> * </p>#}
+{#      </div>#}
+{#      <p>{{ form.idc.errors }}</p>#}
 
       <p>机柜: {{ form.cabinet }} {{ form.cabinet.errors }}</p>
 
@@ -119,6 +131,10 @@ function opensupp() {
     window.open('supplier_add', 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
 }
 
+function openidc() {
+
+    window.open('idc_add', 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+}
 
 
 </script>

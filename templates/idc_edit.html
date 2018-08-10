@@ -1,0 +1,54 @@
+{% extends "simple_base.html" %}
+
+
+{% block title %} 修改IDC机房 {% endblock %}
+{% block body %}
+<h5 class="col-md-2 col-md-offset-1 mb-3 text-success">修改IDC机房</h5>
+
+<form class="needs-validation" novalidate method="POST" action="{% url 'idc_edit' iid %}">
+
+    <div class="col-md-2 col-md-offset-1" style="width:50%">
+        <p>机房名称: {{ idc_form.name }} {{ idc_form.name.errors }} </p>
+        <p>机房地址：{{ idc_form.address }} {{ idc_form.address.errors }} </p>
+        <p>机房区域：{{ idc_form.area }} {{ idc_form.area.errors }} </p>
+        <button class="btn btn-danger" type="button"><a style="text-decoration:none; color:#000000" href="{% url 'idc_del' iid %}">删除</a></button>
+        <button class="btn btn-primary" type="submit">保存</button>
+    </div>
+
+    {% csrf_token %}
+</form>
+
+
+{% endblock %}
+
+
+
+{#{% load static %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{##}
+{#<head>#}
+{#    <meta charset="utf-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#}
+{#    <meta name="description" content="">#}
+{#    <meta name="author" content="ZJJ">#}
+{#    <title>Document</title>#}
+{#</head>#}
+{#<body>#}
+{##}
+{##}
+{##}
+{#  <h5 class="mb-3 text-success">修改制造商</h5>#}
+{##}
+{#  <form class="needs-validation" novalidate method="POST" action="/manufactory_edit/{{ mid }}/">#}
+{##}
+{#    {{ manufactory_form.as_p }}#}
+{##}
+{#    <button class="btn btn-primary" type="submit">保存</button>#}
+{#      {% csrf_token %}#}
+{##}
+{#  </form>#}
+{##}
+{##}
+{#</body>#}
+{#</html>#}

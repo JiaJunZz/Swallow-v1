@@ -67,7 +67,18 @@
 
       <p>过保日期: {{ form.expire_date }} {{ form.expire_date.errors }}</p>
 
-      <p>IDC机房: {{ form.idc }} {{ form.idc.errors }}</p>
+{#      <p>IDC机房: {{ form.idc }} {{ form.idc.errors }}</p>#}
+
+      <p style="margin: 0">IDC机房: </p>
+      <div class="row">
+          <p class="col-md-10">{{ form.idc }}</p>
+          <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="editidc()">
+              <span style="vertical-align: -50%;" class="fa fa-pencil" aria-hidden="true" ></span>
+          </a>
+            <a style="padding-left: 0;outline:none;" href="#" class="col-md-1" onclick="openidc()">
+              <span style="vertical-align: -50%; " class="fa fa-plus fa-lg" aria-hidden="true"></span>
+            </a>
+      </div>
 
       <p>机柜: {{ form.cabinet }} {{ form.cabinet.errors }}</p>
 
@@ -106,6 +117,12 @@ function editsupp() {
     window.open(s_html, 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
 }
 
+function editidc() {
+    var iid=$("#id_idc").val();
+    var i_html = 'idc_edit/' + iid;
+    window.open(i_html, 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+}
+
 function openmanu() {
 
     window.open('manufactory_add', 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
@@ -115,6 +132,13 @@ function opensupp() {
 
     window.open('supplier_add', 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
 }
+
+function openidc() {
+
+    window.open('idc_add', 'newwindow', 'height=300, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+}
+
+
 
 
 

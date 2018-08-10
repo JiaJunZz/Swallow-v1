@@ -19,6 +19,9 @@ urlpatterns = [
     url(r'manufactory_add/$',asset_views.manufactory_add,name="manufactory_add"),
     url(r'manufactory_edit/(\d+)/$',asset_views.manufactory_edit,name="manufactory_edit"),
     url(r'manufactory_del/(\d+)/$', asset_views.manufactory_del, name="manufactory_del"),
+    url(r'idc_add/$',asset_views.idc_add,name="idc_add"),
+    url(r'idc_edit/(\d+)/$',asset_views.idc_edit,name="idc_edit"),
+    url(r'idc_del/(\d+)/$', asset_views.idc_del, name="idc_del"),
     url(r'^change_filter/$',asset_views.change_filter,name='change_filter'),
 
 ]
