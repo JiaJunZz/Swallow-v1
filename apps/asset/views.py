@@ -7,7 +7,6 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-
 from .models import Host, Manufactory, Supplier,IDC
 from .forms import ServerAddForm, SupplierForm, ManufactoryForm,IdcForm
 from .outexcel import excel_output

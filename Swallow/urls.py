@@ -21,7 +21,7 @@ from asset import views as asset_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^asset/',include('asset.urls')),
-    url(r'^user/',include('users.urls')),
+    url(r'^users/',include('users.urls')),
     url(r'^index/$', TemplateView.as_view(template_name="index.html"), name="index"),
 
 ]
