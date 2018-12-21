@@ -11,10 +11,10 @@
   python version：3.5
   
 ##  Project screenshots
-  ![image](https://github.com/zshengsheng/Swallow/blob/master/image_github/servers.png)
+  ![image](https://github.com/zshengsheng/Swallow-v1/blob/master/image_github/servers.png)
   
-  ![image](https://github.com/zshengsheng/Swallow/blob/master/image_github/server_add.png)
+  ![image](https://github.com/zshengsheng/Swallow-v1/blob/master/image_github/server_add.png)
   
-  ![image](https://github.com/zshengsheng/Swallow/blob/master/image_github/server_detail.png)
+  ![image](https://github.com/zshengsheng/Swallow-v1/blob/master/image_github/server_detail.png)
   
-  ![image](https://github.com/zshengsheng/Swallow/blob/master/image_github/server_edit.png)
+  ![image](https://github.com/zshengsheng/Swallow-v1/blob/master/image_github/server_edit.png)
